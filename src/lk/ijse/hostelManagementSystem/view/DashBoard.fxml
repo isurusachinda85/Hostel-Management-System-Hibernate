@@ -69,7 +69,11 @@
       </VBox>
       <AnchorPane fx:id="mainContext" layoutX="229.0" layoutY="6.0" prefHeight="676.0" prefWidth="847.0">
          <children>
-            <Label layoutX="268.0" layoutY="181.0" text="Dash Board" />
+            <Label layoutX="268.0" layoutY="181.0" text="Dash Board">
+               <font>
+                  <Font size="75.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>
