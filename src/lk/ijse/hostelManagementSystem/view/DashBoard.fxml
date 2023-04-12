@@ -17,7 +17,7 @@
                   <Font name="System Bold" size="34.0" />
                </font>
             </Label>
-            <JFXButton buttonType="RAISED" prefHeight="78.0" prefWidth="222.0" text="Dashboard" textFill="WHITE">
+            <JFXButton buttonType="RAISED" onAction="#dashBoardOnAction" prefHeight="78.0" prefWidth="222.0" text="Dashboard" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -25,7 +25,7 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </JFXButton>
-            <JFXButton buttonType="RAISED" layoutX="10.0" layoutY="89.0" prefHeight="78.0" prefWidth="222.0" text="Manage Student " textFill="WHITE">
+            <JFXButton buttonType="RAISED" layoutX="10.0" layoutY="89.0" onAction="#manageStudentOnAction" prefHeight="78.0" prefWidth="222.0" text="Manage Student " textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -33,7 +33,7 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </JFXButton>
-            <JFXButton buttonType="RAISED" layoutX="10.0" layoutY="167.0" prefHeight="78.0" prefWidth="222.0" text="Manage Room" textFill="WHITE">
+            <JFXButton buttonType="RAISED" layoutX="10.0" layoutY="167.0" onAction="#manageRoomOnAction" prefHeight="78.0" prefWidth="222.0" text="Manage Room" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -41,7 +41,7 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </JFXButton>
-            <JFXButton buttonType="RAISED" layoutX="10.0" layoutY="245.0" prefHeight="78.0" prefWidth="222.0" text="Add Reservation" textFill="WHITE">
+            <JFXButton buttonType="RAISED" layoutX="10.0" layoutY="245.0" onAction="#addReservationOnAction" prefHeight="78.0" prefWidth="222.0" text="Add Reservation" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -49,7 +49,7 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </JFXButton>
-            <JFXButton buttonType="RAISED" layoutX="10.0" layoutY="323.0" prefHeight="78.0" prefWidth="222.0" text="View Reservation" textFill="WHITE">
+            <JFXButton buttonType="RAISED" layoutX="10.0" layoutY="323.0" onAction="#viewReservationOnAction" prefHeight="78.0" prefWidth="222.0" text="View Reservation" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -67,5 +67,10 @@
             </JFXButton>
          </children>
       </VBox>
+      <AnchorPane fx:id="mainContext" layoutX="229.0" layoutY="6.0" prefHeight="676.0" prefWidth="847.0">
+         <children>
+            <Label layoutX="268.0" layoutY="181.0" text="Dash Board" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
