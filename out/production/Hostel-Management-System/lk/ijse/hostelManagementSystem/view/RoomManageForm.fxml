@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
@@ -23,14 +24,14 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Separator layoutX="30.0" layoutY="147.0" prefHeight="5.0" prefWidth="815.0" />
+      <Separator layoutX="30.0" layoutY="148.0" prefHeight="4.0" prefWidth="788.0" />
       <JFXTextField labelFloat="true" layoutX="43.0" layoutY="180.0" promptText="Room Id" unFocusColor="#100f0f">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXTextField>
       <JFXComboBox labelFloat="true" layoutX="580.0" layoutY="180.0" prefHeight="31.0" prefWidth="186.0" promptText="Room Type" unFocusColor="BLACK" />
-      <JFXTextField labelFloat="true" layoutX="302.0" layoutY="178.0" promptText="Key Money" unFocusColor="#100f0f">
+      <JFXTextField labelFloat="true" layoutX="302.0" layoutY="178.0" promptText="Monthly Rent(LKR)" unFocusColor="#100f0f">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -40,7 +41,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXTextField>
-      <JFXButton buttonType="RAISED" layoutX="367.0" layoutY="272.0" prefHeight="31.0" prefWidth="84.0" style="-fx-background-color: #6FEEFF; -fx-background-radius: 6;" text="Save">
+      <JFXButton buttonType="RAISED" layoutX="391.0" layoutY="334.0" prefHeight="31.0" prefWidth="84.0" style="-fx-background-color: #6FEEFF; -fx-background-radius: 6;" text="Save">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -48,7 +49,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="662.0" layoutY="271.0" prefHeight="31.0" prefWidth="84.0" style="-fx-background-color: #EAF55C; -fx-background-radius: 6;" text="Clear">
+      <JFXButton buttonType="RAISED" layoutX="686.0" layoutY="333.0" prefHeight="31.0" prefWidth="84.0" style="-fx-background-color: #EAF55C; -fx-background-radius: 6;" text="Clear">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -56,7 +57,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="466.0" layoutY="272.0" prefHeight="31.0" prefWidth="84.0" style="-fx-background-color: #2ecc71; -fx-background-radius: 6;" text="Update">
+      <JFXButton buttonType="RAISED" layoutX="490.0" layoutY="334.0" prefHeight="31.0" prefWidth="84.0" style="-fx-background-color: #2ecc71; -fx-background-radius: 6;" text="Update">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -64,7 +65,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="564.0" layoutY="272.0" prefHeight="31.0" prefWidth="84.0" style="-fx-background-color: #ea2323; -fx-background-radius: 6;" text="Delete">
+      <JFXButton buttonType="RAISED" layoutX="588.0" layoutY="334.0" prefHeight="31.0" prefWidth="84.0" style="-fx-background-color: #ea2323; -fx-background-radius: 6;" text="Delete">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -72,13 +73,36 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXButton>
-      <TableView layoutX="52.0" layoutY="375.0" prefHeight="243.0" prefWidth="745.0">
+      <TableView layoutX="15.0" layoutY="400.0" prefHeight="243.0" prefWidth="815.0">
         <columns>
-          <TableColumn prefWidth="117.0" text="Room Id" />
-          <TableColumn prefWidth="212.0" text="Key Money" />
-            <TableColumn minWidth="0.0" prefWidth="226.0" text="Room Type" />
-            <TableColumn prefWidth="189.0" text="Quantity" />
+          <TableColumn prefWidth="83.0" text="Room Id" />
+          <TableColumn prefWidth="125.0" text="Room Type" />
+            <TableColumn prefWidth="175.0" text="Monthly Rent(LKR)" />
+            <TableColumn minWidth="0.0" prefWidth="152.0" text="Room Quantity" />
+            <TableColumn prefWidth="144.0" text="Available Quantity" />
+            <TableColumn prefWidth="135.0" text="Add Date" />
         </columns>
       </TableView>
+      <JFXDatePicker layoutX="302.0" layoutY="251.0" promptText="Room Add Date" />
+      <Label layoutX="486.0" layoutY="114.0" text="Date : " textFill="#31d334">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="540.0" layoutY="114.0" text="2023/04/13">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="652.0" layoutY="114.0" text="Time : " textFill="#31d334">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="711.0" layoutY="114.0" text="09:00:00" textFill="#030303">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

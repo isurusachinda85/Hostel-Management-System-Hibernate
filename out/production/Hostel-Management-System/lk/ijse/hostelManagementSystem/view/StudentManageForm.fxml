@@ -39,14 +39,15 @@
          </font></JFXTextField>
       <JFXDatePicker defaultColor="#4059a9" layoutX="52.0" layoutY="280.0" prefHeight="31.0" prefWidth="189.0" promptText="Date of birth" />
       <JFXComboBox labelFloat="true" layoutX="275.0" layoutY="280.0" prefHeight="31.0" prefWidth="169.0" promptText="Gender" unFocusColor="#100f0f" />
-      <TableView layoutX="47.0" layoutY="394.0" prefHeight="227.0" prefWidth="750.0">
+      <TableView layoutX="53.0" layoutY="402.0" prefHeight="227.0" prefWidth="750.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Id" />
-          <TableColumn prefWidth="120.0" text="Name" />
-            <TableColumn prefWidth="169.0" text="Address" />
-            <TableColumn prefWidth="129.0" text="Contact" />
-            <TableColumn prefWidth="145.0" text="Date of birth" />
-            <TableColumn prefWidth="111.0" text="Gender" />
+          <TableColumn prefWidth="58.0" text="Id" />
+          <TableColumn prefWidth="115.0" text="Name" />
+            <TableColumn prefWidth="120.0" text="Address" />
+            <TableColumn prefWidth="108.0" text="Contact" />
+            <TableColumn prefWidth="132.0" text="Date of birth" />
+            <TableColumn prefWidth="98.0" text="Gender" />
+            <TableColumn prefWidth="118.0" text="Register Date" />
         </columns>
       </TableView>
       <Label layoutX="64.0" layoutY="108.0" text="Add Student Detail" textFill="#31d334">
@@ -92,5 +93,25 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXButton>
+      <Label layoutX="476.0" layoutY="104.0" text="Date : " textFill="#31d334">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="530.0" layoutY="104.0" text="2023/04/13">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="642.0" layoutY="104.0" text="Time : " textFill="#31d334">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="701.0" layoutY="104.0" text="09:00:00" textFill="#030303">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
