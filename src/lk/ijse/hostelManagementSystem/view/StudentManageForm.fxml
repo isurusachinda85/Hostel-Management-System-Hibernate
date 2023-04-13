@@ -14,7 +14,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="676.0" prefWidth="847.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostelManagementSystem.controller.StudentManageFormController">
    <children>
       <Label layoutX="251.0" layoutY="14.0" text="Student Management" textFill="#2748da">
@@ -22,10 +21,22 @@
             <Font name="Bell MT Bold" size="41.0" />
          </font>
       </Label>
-      <JFXTextField labelFloat="true" layoutX="52.0" layoutY="167.0" promptText="Student Id" unFocusColor="#100f0f" />
-      <JFXTextField labelFloat="true" layoutX="261.0" layoutY="167.0" promptText="Student Name" unFocusColor="#100f0f" />
-      <JFXTextField labelFloat="true" layoutX="462.0" layoutY="167.0" promptText="Student Address" unFocusColor="#100f0f" />
-      <JFXTextField labelFloat="true" layoutX="662.0" layoutY="167.0" promptText="Student Contact" unFocusColor="#100f0f" />
+      <JFXTextField labelFloat="true" layoutX="52.0" layoutY="167.0" promptText="Student Id" unFocusColor="#100f0f">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></JFXTextField>
+      <JFXTextField labelFloat="true" layoutX="261.0" layoutY="167.0" promptText="Student Name" unFocusColor="#100f0f">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></JFXTextField>
+      <JFXTextField labelFloat="true" layoutX="462.0" layoutY="167.0" promptText="Student Address" unFocusColor="#100f0f">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></JFXTextField>
+      <JFXTextField labelFloat="true" layoutX="662.0" layoutY="167.0" promptText="Student Contact" unFocusColor="#100f0f">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></JFXTextField>
       <JFXDatePicker defaultColor="#4059a9" layoutX="52.0" layoutY="280.0" prefHeight="31.0" prefWidth="189.0" promptText="Date of birth" />
       <JFXComboBox labelFloat="true" layoutX="275.0" layoutY="280.0" prefHeight="31.0" prefWidth="169.0" promptText="Gender" unFocusColor="#100f0f" />
       <TableView layoutX="47.0" layoutY="394.0" prefHeight="227.0" prefWidth="750.0">
