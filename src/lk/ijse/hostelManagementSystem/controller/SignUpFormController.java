@@ -12,7 +12,10 @@ import java.io.IOException;
 public class SignUpFormController {
     public AnchorPane signUpContext;
 
-    public void signOnAction(ActionEvent actionEvent) throws IOException {
+    public void registerOnAction(ActionEvent actionEvent) {
+    }
+
+    public void loginOnAction(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) signUpContext.getScene().getWindow();
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/lk/ijse/hostelManagementSystem/view/LoginForm.fxml"))));
         stage.centerOnScreen();

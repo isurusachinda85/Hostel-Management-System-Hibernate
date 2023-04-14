@@ -1,11 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane fx:id="signUpContext" prefHeight="692.0" prefWidth="399.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostelManagementSystem.controller.SignUpFormController">
+<AnchorPane fx:id="signUpContext" prefHeight="440.0" prefWidth="401.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostelManagementSystem.controller.SignUpFormController">
    <children>
-      <Button layoutX="259.0" layoutY="597.0" mnemonicParsing="false" onAction="#signOnAction" text="Singn" />
+      <Label layoutX="91.0" layoutY="43.0" text="New User Register" textFill="#003aff">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+      <JFXTextField labelFloat="true" layoutX="73.0" layoutY="153.0" prefHeight="31.0" prefWidth="217.0" promptText="User Name">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </JFXTextField>
+      <JFXPasswordField labelFloat="true" layoutX="73.0" layoutY="222.0" prefHeight="31.0" prefWidth="217.0" promptText="Password">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </JFXPasswordField>
+      <JFXPasswordField labelFloat="true" layoutX="73.0" layoutY="291.0" prefHeight="31.0" prefWidth="217.0" promptText="Confirm Password">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </JFXPasswordField>
+      <JFXButton buttonType="RAISED" layoutX="73.0" layoutY="378.0" onAction="#registerOnAction" prefHeight="31.0" prefWidth="133.0" style="-fx-background-color: #2AD587; -fx-background-radius: 7;" text="Register" textFill="WHITE" textOverrun="CLIP">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+         <effect>
+            <Shadow height="0.0" radius="0.0" width="0.0" />
+         </effect>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="227.0" layoutY="378.0" onAction="#loginOnAction" prefHeight="31.0" prefWidth="133.0" style="-fx-background-color: #004EBB; -fx-background-radius: 7;" text="Login" textFill="WHITE" textOverrun="CLIP">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+         <effect>
+            <Shadow height="0.0" radius="0.0" width="0.0" />
+         </effect>
+      </JFXButton>
+      <ImageView fitHeight="21.0" fitWidth="24.0" layoutX="272.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assest/user%20(1).png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="21.0" fitWidth="24.0" layoutX="267.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assest/view%20(1).png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="21.0" fitWidth="24.0" layoutX="268.0" layoutY="304.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assest/view%20(1).png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

@@ -35,7 +35,7 @@
             <Image url="@assest/user%20(1).png" />
          </image>
       </ImageView>
-      <JFXButton buttonType="RAISED" layoutX="58.0" layoutY="388.0" onAction="#loginOnAction" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #2d9bd6; -fx-background-radius: 7;" text="Login" textFill="WHITE" textOverrun="CLIP">
+      <JFXButton buttonType="RAISED" layoutX="58.0" layoutY="388.0" onAction="#loginOnAction" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #1F38AB; -fx-background-radius: 7;" text="Login" textFill="WHITE" textOverrun="CLIP">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -61,7 +61,7 @@
             <Font name="Baskerville Old Face" size="55.0" />
          </font>
       </Label>
-      <Label layoutX="96.0" layoutY="453.0" onMouseClicked="#signUpOnAction" text="New User?Register Now">
+      <Label layoutX="94.0" layoutY="447.0" onMouseClicked="#signUpOnAction" text="New User?Register Now">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
