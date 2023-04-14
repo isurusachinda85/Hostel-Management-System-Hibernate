@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -40,15 +41,15 @@ public class LoginFormController {
 
     }
 
-    public void signUpOnAction(ActionEvent actionEvent) throws IOException {
-        Stage stage = (Stage) loginContext.getScene().getWindow();
-        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/lk/ijse/hostelManagementSystem/view/SignUpForm.fxml"))));
-        stage.centerOnScreen();
-    }
-
     public void loginOnAction(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) loginContext.getScene().getWindow();
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/lk/ijse/hostelManagementSystem/view/DashBoard.fxml"))));
+        stage.centerOnScreen();
+    }
+
+    public void signUpOnAction(MouseEvent mouseEvent) throws IOException {
+        Stage stage = (Stage) loginContext.getScene().getWindow();
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/lk/ijse/hostelManagementSystem/view/SignUpForm.fxml"))));
         stage.centerOnScreen();
     }
 }
