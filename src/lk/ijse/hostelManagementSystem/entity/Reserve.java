@@ -1,0 +1,23 @@
+package lk.ijse.hostelManagementSystem.entity;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.Entity;
+import java.time.LocalDate;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Entity
+public class Reserve {
+    private String reserveId;
+    private LocalDate date;
+    private String studentName;
+    private double monthlyRent;
+    private double paidKeyMoney;
+    private double dueKeyMoney;
+    private String paymentThisMonth;
+
+}
