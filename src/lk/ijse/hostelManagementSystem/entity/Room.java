@@ -20,4 +20,6 @@ public class Room {
     private int roomsQty;
     private int availableQty;
     private LocalDate addDate;
+
+
 }

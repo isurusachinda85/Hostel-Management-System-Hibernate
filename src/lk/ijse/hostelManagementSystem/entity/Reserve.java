@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 
 @AllArgsConstructor
@@ -19,5 +20,9 @@ public class Reserve {
     private double paidKeyMoney;
     private double dueKeyMoney;
     private String paymentThisMonth;
+    @ManyToOne
+    private Room room;
+    @ManyToOne
+    private Student student;
 
 }
