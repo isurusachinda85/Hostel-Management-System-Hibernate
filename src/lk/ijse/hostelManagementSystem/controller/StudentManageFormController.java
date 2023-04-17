@@ -3,6 +3,9 @@ package lk.ijse.hostelManagementSystem.controller;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,8 +14,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.util.Duration;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
 
 public class StudentManageFormController implements Initializable {
@@ -67,7 +73,9 @@ public class StudentManageFormController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setCmbGender();
+        loadTimeAndDate();
     }
+
     @FXML
     void clearTextOnAction(ActionEvent event) {
 
@@ -87,10 +95,25 @@ public class StudentManageFormController implements Initializable {
     void updateOnAction(ActionEvent event) {
 
     }
-    public void setCmbGender(){
-        ObservableList<String>list = FXCollections.observableArrayList();
-        list.addAll("Male","Female","Other");
+
+    public void setCmbGender() {
+        ObservableList<String> list = FXCollections.observableArrayList();
+        list.addAll("Male", "Female", "Other");
         cmbGender.setItems(list);
+    }
+
+    public void loadTimeAndDate() {
+        Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e->{
+            LocalTime currentTime = LocalTime.now();
+            lblTime.setText(currentTime.getHour()+":"+currentTime.getMinute()+":"+currentTime.getSecond());
+        }),
+                new KeyFrame(Duration.seconds(1))
+        );
+        clock.setCycleCount(Animation.INDEFINITE);
+        clock.play();
+
+        LocalDate date = LocalDate.now();
+        lblDate.setText(String.valueOf(date));
     }
 
 }
