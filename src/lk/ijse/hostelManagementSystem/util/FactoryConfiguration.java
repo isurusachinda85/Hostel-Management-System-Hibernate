@@ -1,5 +1,9 @@
 package lk.ijse.hostelManagementSystem.util;
 
+import lk.ijse.hostelManagementSystem.entity.Reserve;
+import lk.ijse.hostelManagementSystem.entity.Room;
+import lk.ijse.hostelManagementSystem.entity.Student;
+import lk.ijse.hostelManagementSystem.entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -18,6 +22,12 @@ public class FactoryConfiguration {
         properties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("hibernate.properties"));
         configuration.setProperties(properties);
 
+        configuration.addAnnotatedClass(Student.class);
+        configuration.addAnnotatedClass(Room.class);
+        configuration.addAnnotatedClass(Reserve.class);
+        configuration.addAnnotatedClass(User.class);
+
+        sessionFactory = configuration.buildSessionFactory();
 
     }
     public static FactoryConfiguration getInstance() throws IOException {

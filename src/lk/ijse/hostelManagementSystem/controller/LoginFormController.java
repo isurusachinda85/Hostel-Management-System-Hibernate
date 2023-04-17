@@ -14,6 +14,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.hostelManagementSystem.util.FactoryConfiguration;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 
 import java.io.IOException;
@@ -45,6 +48,7 @@ public class LoginFormController {
         Stage stage = (Stage) loginContext.getScene().getWindow();
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/lk/ijse/hostelManagementSystem/view/DashBoard.fxml"))));
         stage.centerOnScreen();
+
     }
 
     public void signUpOnAction(MouseEvent mouseEvent) throws IOException {

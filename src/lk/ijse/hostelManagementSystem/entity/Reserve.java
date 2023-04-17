@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 
@@ -13,6 +14,7 @@ import java.time.LocalDate;
 @Data
 @Entity
 public class Reserve {
+    @Id
     private String reserveId;
     private LocalDate date;
     private String studentName;
