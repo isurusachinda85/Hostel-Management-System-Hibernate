@@ -27,4 +27,14 @@ public class Student {
     private LocalDate registerDate;
     @OneToMany(mappedBy = "student",fetch = FetchType.EAGER)
     private List<Reserve>reserveList = new ArrayList<>();
+
+    public Student(String sid, String name, String address, String contact, LocalDate dob, String gender, LocalDate registerDate) {
+        this.sid = sid;
+        this.name = name;
+        this.address = address;
+        this.contact = contact;
+        this.dob = dob;
+        this.gender = gender;
+        this.registerDate = registerDate;
+    }
 }

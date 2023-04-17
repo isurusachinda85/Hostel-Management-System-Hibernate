@@ -15,7 +15,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.util.Duration;
+import lk.ijse.hostelManagementSystem.entity.Student;
+import lk.ijse.hostelManagementSystem.util.FactoryConfiguration;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -87,8 +92,22 @@ public class StudentManageFormController implements Initializable {
     }
 
     @FXML
-    void saveOnAction(ActionEvent event) {
+    void saveOnAction(ActionEvent event) throws IOException {
+        String id = txtId.getText();
+        String name = txtName.getText();
+        String address = txtAddress.getText();
+        String contact = txtContact.getText();
+        LocalDate dob = txtDob.getValue();
+        String gender = cmbGender.getValue();
+        LocalDate registerDate = LocalDate.parse(lblDate.getText());
 
+        Student student = new Student(id,name,address,contact,dob,gender,registerDate);
+
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        session.save(student);
+        transaction.commit();
+        session.close();
     }
 
     @FXML
