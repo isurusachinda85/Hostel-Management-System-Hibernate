@@ -81,15 +81,6 @@ public class StudentManageFormController implements Initializable {
         loadTimeAndDate();
     }
 
-    @FXML
-    void clearTextOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void deleteOnAction(ActionEvent event) {
-
-    }
 
     @FXML
     void saveOnAction(ActionEvent event) throws IOException {
@@ -101,18 +92,40 @@ public class StudentManageFormController implements Initializable {
         String gender = cmbGender.getValue();
         LocalDate registerDate = LocalDate.parse(lblDate.getText());
 
-        Student student = new Student(id,name,address,contact,dob,gender,registerDate);
+        Student student = new Student(id, name, address, contact, dob, gender, registerDate);
 
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         session.save(student);
         transaction.commit();
         session.close();
+        clearTextOnAction(event);
+    }
+
+    @FXML
+    void searchOnAction(ActionEvent event) {
+
     }
 
     @FXML
     void updateOnAction(ActionEvent event) {
 
+    }
+
+
+    @FXML
+    void deleteOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void clearTextOnAction(ActionEvent event) {
+        txtId.clear();
+        txtName.clear();
+        txtAddress.clear();
+        txtContact.clear();
+        cmbGender.getSelectionModel().clearSelection();
+        txtDob.getEditor().clear();
     }
 
     public void setCmbGender() {
@@ -122,9 +135,9 @@ public class StudentManageFormController implements Initializable {
     }
 
     public void loadTimeAndDate() {
-        Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e->{
+        Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
             LocalTime currentTime = LocalTime.now();
-            lblTime.setText(currentTime.getHour()+":"+currentTime.getMinute()+":"+currentTime.getSecond());
+            lblTime.setText(currentTime.getHour() + ":" + currentTime.getMinute() + ":" + currentTime.getSecond());
         }),
                 new KeyFrame(Duration.seconds(1))
         );

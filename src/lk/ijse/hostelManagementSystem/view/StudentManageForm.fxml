@@ -21,7 +21,7 @@
             <Font name="Bell MT Bold" size="41.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtId" labelFloat="true" layoutX="52.0" layoutY="167.0" promptText="Student Id" unFocusColor="#100f0f">
+      <JFXTextField fx:id="txtId" labelFloat="true" layoutX="52.0" layoutY="167.0" onAction="#searchOnAction" promptText="Student Id" unFocusColor="#100f0f">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></JFXTextField>
