@@ -21,33 +21,33 @@
             <Font name="Bell MT Bold" size="41.0" />
          </font>
       </Label>
-      <JFXTextField labelFloat="true" layoutX="52.0" layoutY="167.0" promptText="Student Id" unFocusColor="#100f0f">
+      <JFXTextField fx:id="txtId" labelFloat="true" layoutX="52.0" layoutY="167.0" promptText="Student Id" unFocusColor="#100f0f">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></JFXTextField>
-      <JFXTextField labelFloat="true" layoutX="261.0" layoutY="167.0" promptText="Student Name" unFocusColor="#100f0f">
+      <JFXTextField fx:id="txtName" labelFloat="true" layoutX="261.0" layoutY="167.0" promptText="Student Name" unFocusColor="#100f0f">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></JFXTextField>
-      <JFXTextField labelFloat="true" layoutX="462.0" layoutY="167.0" promptText="Student Address" unFocusColor="#100f0f">
+      <JFXTextField fx:id="txtAddress" labelFloat="true" layoutX="462.0" layoutY="167.0" promptText="Student Address" unFocusColor="#100f0f">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></JFXTextField>
-      <JFXTextField labelFloat="true" layoutX="662.0" layoutY="167.0" promptText="Student Contact" unFocusColor="#100f0f">
+      <JFXTextField fx:id="txtContact" labelFloat="true" layoutX="662.0" layoutY="167.0" promptText="Student Contact" unFocusColor="#100f0f">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></JFXTextField>
-      <JFXDatePicker defaultColor="#4059a9" layoutX="52.0" layoutY="280.0" prefHeight="31.0" prefWidth="189.0" promptText="Date of birth" />
-      <JFXComboBox labelFloat="true" layoutX="275.0" layoutY="280.0" prefHeight="31.0" prefWidth="169.0" promptText="Gender" unFocusColor="#100f0f" />
-      <TableView layoutX="53.0" layoutY="402.0" prefHeight="227.0" prefWidth="750.0">
+      <JFXDatePicker fx:id="txtDob" defaultColor="#4059a9" layoutX="52.0" layoutY="280.0" prefHeight="31.0" prefWidth="189.0" promptText="Date of birth" />
+      <JFXComboBox fx:id="cmbGender" labelFloat="true" layoutX="275.0" layoutY="280.0" prefHeight="31.0" prefWidth="169.0" promptText="Gender" unFocusColor="#100f0f" />
+      <TableView fx:id="tblStudent" layoutX="53.0" layoutY="402.0" prefHeight="227.0" prefWidth="750.0">
         <columns>
-          <TableColumn prefWidth="58.0" text="Id" />
-          <TableColumn prefWidth="115.0" text="Name" />
-            <TableColumn prefWidth="120.0" text="Address" />
-            <TableColumn prefWidth="108.0" text="Contact" />
-            <TableColumn prefWidth="132.0" text="Date of birth" />
-            <TableColumn prefWidth="98.0" text="Gender" />
-            <TableColumn prefWidth="118.0" text="Register Date" />
+          <TableColumn fx:id="colId" prefWidth="58.0" text="Id" />
+          <TableColumn fx:id="colName" prefWidth="115.0" text="Name" />
+            <TableColumn fx:id="colAddress" prefWidth="120.0" text="Address" />
+            <TableColumn fx:id="colContact" prefWidth="108.0" text="Contact" />
+            <TableColumn fx:id="colDob" prefWidth="132.0" text="Date of birth" />
+            <TableColumn fx:id="colGender" prefWidth="98.0" text="Gender" />
+            <TableColumn fx:id="colRegisterDate" prefWidth="118.0" text="Register Date" />
         </columns>
       </TableView>
       <Label layoutX="64.0" layoutY="108.0" text="Add Student Detail" textFill="#31d334">
@@ -61,7 +61,7 @@
          </image>
       </ImageView>
       <Separator layoutX="20.0" layoutY="137.0" prefHeight="5.0" prefWidth="815.0" />
-      <JFXButton buttonType="RAISED" layoutX="444.0" layoutY="323.0" prefHeight="31.0" prefWidth="84.0" style="-fx-background-color: #6FEEFF; -fx-background-radius: 6;" text="Save">
+      <JFXButton buttonType="RAISED" layoutX="444.0" layoutY="323.0" onAction="#saveOnAction" prefHeight="31.0" prefWidth="84.0" style="-fx-background-color: #6FEEFF; -fx-background-radius: 6;" text="Save">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -69,7 +69,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="739.0" layoutY="322.0" prefHeight="31.0" prefWidth="84.0" style="-fx-background-color: #EAF55C; -fx-background-radius: 6;" text="Clear">
+      <JFXButton buttonType="RAISED" layoutX="739.0" layoutY="322.0" onAction="#clearTextOnAction" prefHeight="31.0" prefWidth="84.0" style="-fx-background-color: #EAF55C; -fx-background-radius: 6;" text="Clear">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -77,7 +77,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="543.0" layoutY="323.0" prefHeight="31.0" prefWidth="84.0" style="-fx-background-color: #2ecc71; -fx-background-radius: 6;" text="Update">
+      <JFXButton buttonType="RAISED" layoutX="543.0" layoutY="323.0" onAction="#updateOnAction" prefHeight="31.0" prefWidth="84.0" style="-fx-background-color: #2ecc71; -fx-background-radius: 6;" text="Update">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -85,7 +85,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="641.0" layoutY="323.0" prefHeight="31.0" prefWidth="84.0" style="-fx-background-color: #ea2323; -fx-background-radius: 6;" text="Delete">
+      <JFXButton buttonType="RAISED" layoutX="641.0" layoutY="323.0" onAction="#deleteOnAction" prefHeight="31.0" prefWidth="84.0" style="-fx-background-color: #ea2323; -fx-background-radius: 6;" text="Delete">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -98,7 +98,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="530.0" layoutY="104.0" text="2023/04/13">
+      <Label fx:id="lblDate" layoutX="530.0" layoutY="104.0" text="2023/04/13">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -108,7 +108,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="701.0" layoutY="104.0" text="09:00:00" textFill="#030303">
+      <Label fx:id="lblTime" layoutX="701.0" layoutY="104.0" text="09:00:00" textFill="#030303">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
