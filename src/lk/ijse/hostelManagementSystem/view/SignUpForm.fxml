@@ -18,17 +18,17 @@
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
-      <JFXTextField labelFloat="true" layoutX="94.0" layoutY="140.0" prefHeight="31.0" prefWidth="217.0" promptText="User Name">
+      <JFXTextField fx:id="txtUserName" labelFloat="true" layoutX="94.0" layoutY="140.0" prefHeight="31.0" prefWidth="217.0" promptText="User Name">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXTextField>
-      <JFXPasswordField labelFloat="true" layoutX="94.0" layoutY="209.0" prefHeight="31.0" prefWidth="217.0" promptText="Password">
+      <JFXPasswordField fx:id="txtPassword" labelFloat="true" layoutX="94.0" layoutY="209.0" prefHeight="31.0" prefWidth="217.0" promptText="Password">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXPasswordField>
-      <JFXPasswordField labelFloat="true" layoutX="94.0" layoutY="278.0" prefHeight="31.0" prefWidth="217.0" promptText="Confirm Password">
+      <JFXPasswordField fx:id="txtConfirmPassword" labelFloat="true" layoutX="94.0" layoutY="278.0" prefHeight="31.0" prefWidth="217.0" promptText="Confirm Password">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
