@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -21,6 +22,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -103,13 +105,42 @@ public class StudentManageFormController implements Initializable {
     }
 
     @FXML
-    void searchOnAction(ActionEvent event) {
+    void searchOnAction(ActionEvent event) throws IOException {
+        String id = txtId.getText();
 
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Student student = session.get(Student.class, id);
+        if (student != null){
+            txtName.setText(student.getName());
+            txtAddress.setText(student.getAddress());
+            txtContact.setText(student.getContact());
+            txtDob.setValue(student.getDob());
+            cmbGender.setValue(student.getGender());
+        }else {
+            new Alert(Alert.AlertType.WARNING, "Not Found Student !").show();
+        }
+        transaction.commit();
+        session.close();
     }
 
     @FXML
-    void updateOnAction(ActionEvent event) {
+    void updateOnAction(ActionEvent event) throws IOException {
+        String id = txtId.getText();
+        String name = txtName.getText();
+        String address = txtAddress.getText();
+        String contact = txtContact.getText();
+        LocalDate dob = txtDob.getValue();
+        String gender = cmbGender.getValue();
+        LocalDate registerDate = LocalDate.parse(lblDate.getText());
 
+        Student student = new Student(id,name,address,contact,dob,gender,registerDate);
+
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        session.update(student);
+        transaction.commit();
+        session.close();
     }
 
 
