@@ -6,7 +6,10 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,6 +23,6 @@ public class Room {
     private int roomsQty;
     private int availableQty;
     private LocalDate addDate;
-
-
+    @OneToMany
+    private List<Reserve>reserveList = new ArrayList<>();
 }
