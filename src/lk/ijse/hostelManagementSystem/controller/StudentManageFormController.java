@@ -15,17 +15,21 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Duration;
 import lk.ijse.hostelManagementSystem.entity.Student;
 import lk.ijse.hostelManagementSystem.util.FactoryConfiguration;
+import lombok.SneakyThrows;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class StudentManageFormController implements Initializable {
@@ -48,7 +52,7 @@ public class StudentManageFormController implements Initializable {
     private JFXComboBox<String> cmbGender;
 
     @FXML
-    private TableView<?> tblStudent;
+    private TableView<Student> tblStudent;
 
     @FXML
     private TableColumn<?, ?> colId;
@@ -77,12 +81,24 @@ public class StudentManageFormController implements Initializable {
     @FXML
     private Label lblTime;
 
+    @SneakyThrows
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setCmbGender();
         loadTimeAndDate();
+        getAllStudent();
+        setCellValueFactory();
     }
 
+    public void setCellValueFactory() {
+        colId.setCellValueFactory(new PropertyValueFactory<>("sid"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        colContact.setCellValueFactory(new PropertyValueFactory<>("contact"));
+        colDob.setCellValueFactory(new PropertyValueFactory<>("dob"));
+        colGender.setCellValueFactory(new PropertyValueFactory<>("gender"));
+        colRegisterDate.setCellValueFactory(new PropertyValueFactory<>("registerDate"));
+    }
 
     @FXML
     void saveOnAction(ActionEvent event) throws IOException {
@@ -101,7 +117,10 @@ public class StudentManageFormController implements Initializable {
         session.save(student);
         transaction.commit();
         session.close();
+
         clearTextOnAction(event);
+
+        getAllStudent();
     }
 
     @FXML
@@ -141,6 +160,9 @@ public class StudentManageFormController implements Initializable {
         session.update(student);
         transaction.commit();
         session.close();
+
+        clearTextOnAction(event);
+        getAllStudent();
     }
 
 
@@ -151,6 +173,28 @@ public class StudentManageFormController implements Initializable {
         Transaction transaction = session.beginTransaction();
         Student student = session.load(Student.class, id);
         session.delete(student);
+        transaction.commit();
+        session.close();
+
+        clearTextOnAction(event);
+        getAllStudent();
+    }
+
+    public void getAllStudent() throws IOException {
+        ObservableList<Student> studentList = FXCollections.observableArrayList();
+
+        studentList.clear();
+
+        String hql = "FROM Student";
+
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Query query = session.createQuery(hql);
+        List<Student> list = query.list();
+        for (Student student : list) {
+            studentList.add(student);
+        }
+        tblStudent.setItems(studentList);
         transaction.commit();
         session.close();
     }
