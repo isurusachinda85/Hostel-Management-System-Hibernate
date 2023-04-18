@@ -15,16 +15,20 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Duration;
 import lk.ijse.hostelManagementSystem.entity.Room;
 import lk.ijse.hostelManagementSystem.util.FactoryConfiguration;
+import lombok.SneakyThrows;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class RoomManageFormController implements Initializable {
@@ -42,7 +46,7 @@ public class RoomManageFormController implements Initializable {
     private JFXTextField txtqty;
 
     @FXML
-    private TableView<?> tblRoom;
+    private TableView<Room> tblRoom;
 
     @FXML
     private TableColumn<?, ?> colRoomId;
@@ -71,13 +75,23 @@ public class RoomManageFormController implements Initializable {
     @FXML
     private Label lblTime;
 
+    @SneakyThrows
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadTimeAndDate();
         setCmbRoomType();
+        getAllRoom();
+        setCellValueFactory();
     }
 
-
+    public void setCellValueFactory() {
+        colRoomId.setCellValueFactory(new PropertyValueFactory<>("roomId"));
+        colType.setCellValueFactory(new PropertyValueFactory<>("type"));
+        colMonthlyRent.setCellValueFactory(new PropertyValueFactory<>("monthlyRent"));
+        colRoomQty.setCellValueFactory(new PropertyValueFactory<>("roomsQty"));
+        colAvailableQty.setCellValueFactory(new PropertyValueFactory<>("availableQty"));
+        colAddDate.setCellValueFactory(new PropertyValueFactory<>("addDate"));
+    }
     @FXML
     void saveOnAction(ActionEvent event) throws IOException {
         String id = txtId.getText();
@@ -94,6 +108,9 @@ public class RoomManageFormController implements Initializable {
         session.save(room);
         transaction.commit();
         session.close();
+
+        getAllRoom();
+        clearOnAction(event);
     }
 
     @FXML
@@ -130,6 +147,9 @@ public class RoomManageFormController implements Initializable {
         session.update(room);
         transaction.commit();
         session.close();
+
+        getAllRoom();
+        clearOnAction(event);
     }
 
     @FXML
@@ -139,6 +159,27 @@ public class RoomManageFormController implements Initializable {
         Transaction transaction = session.beginTransaction();
         Room room = session.load(Room.class, id);
         session.delete(room);
+        transaction.commit();
+        session.close();
+
+        getAllRoom();
+        clearOnAction(event);
+    }
+    public void getAllRoom() throws IOException {
+        ObservableList<Room>roomList = FXCollections.observableArrayList();
+
+        roomList.clear();
+
+        String hql = "FROM Room";
+
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Query query = session.createQuery(hql);
+        List<Room> list = query.list();
+        for (Room room : list) {
+            roomList.add(room);
+        }
+        tblRoom.setItems(roomList);
         transaction.commit();
         session.close();
     }
