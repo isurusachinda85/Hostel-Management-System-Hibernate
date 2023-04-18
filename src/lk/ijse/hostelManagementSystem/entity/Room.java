@@ -26,4 +26,13 @@ public class Room {
     private LocalDate addDate;
     @OneToMany(mappedBy = "room" ,fetch = FetchType.EAGER)
     private List<Reserve>reserveList = new ArrayList<>();
+
+    public Room(String roomId, String type, double monthlyRent, int roomsQty, int availableQty, LocalDate addDate) {
+        this.roomId = roomId;
+        this.type = type;
+        this.monthlyRent = monthlyRent;
+        this.roomsQty = roomsQty;
+        this.availableQty = availableQty;
+        this.addDate = addDate;
+    }
 }

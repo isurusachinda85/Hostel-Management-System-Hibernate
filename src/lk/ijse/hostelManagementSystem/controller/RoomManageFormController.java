@@ -15,7 +15,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.util.Duration;
+import lk.ijse.hostelManagementSystem.entity.Room;
+import lk.ijse.hostelManagementSystem.util.FactoryConfiguration;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -73,8 +78,21 @@ public class RoomManageFormController implements Initializable {
 
 
     @FXML
-    void saveOnAction(ActionEvent event) {
+    void saveOnAction(ActionEvent event) throws IOException {
+        String id = txtId.getText();
+        String type = cmbRoomType.getValue();
+        double rent = Double.parseDouble(txtMonthlyRent.getText());
+        int roomQty = Integer.parseInt(txtqty.getText());
+        int availabelQty = Integer.parseInt(txtqty.getText());
+        LocalDate addDate = txtAddDate.getValue();
 
+        Room room = new Room(id,type,rent,roomQty,availabelQty,addDate);
+
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        session.save(room);
+        transaction.commit();
+        session.close();
     }
 
     @FXML
