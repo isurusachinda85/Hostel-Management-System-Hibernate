@@ -6,6 +6,8 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,7 +27,7 @@ public class RoomManageFormController implements Initializable {
     private JFXTextField txtId;
 
     @FXML
-    private JFXComboBox<?> cmbRoomType;
+    private JFXComboBox<String> cmbRoomType;
 
     @FXML
     private JFXTextField txtMonthlyRent;
@@ -66,6 +68,7 @@ public class RoomManageFormController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadTimeAndDate();
+        setCmbRoomType();
     }
 
 
@@ -87,6 +90,12 @@ public class RoomManageFormController implements Initializable {
     @FXML
     void deleteOnAction(ActionEvent event) {
 
+    }
+
+    public void setCmbRoomType() {
+        ObservableList<String>list = FXCollections.observableArrayList();
+        list.addAll("Non-AC","Non-AC/Food","AC","AC/Food");
+        cmbRoomType.setItems(list);
     }
 
     @FXML
