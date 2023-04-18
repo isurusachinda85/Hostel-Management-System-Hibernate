@@ -115,13 +115,32 @@ public class RoomManageFormController implements Initializable {
     }
 
     @FXML
-    void updateOnAction(ActionEvent event) {
+    void updateOnAction(ActionEvent event) throws IOException {
+        String id = txtId.getText();
+        String type = cmbRoomType.getValue();
+        double rent = Double.parseDouble(txtMonthlyRent.getText());
+        int roomQty = Integer.parseInt(txtqty.getText());
+        int availabelQty = Integer.parseInt(txtqty.getText());
+        LocalDate addDate = txtAddDate.getValue();
 
+        Room room = new Room(id,type,rent,roomQty,availabelQty,addDate);
+
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        session.update(room);
+        transaction.commit();
+        session.close();
     }
 
     @FXML
-    void deleteOnAction(ActionEvent event) {
-
+    void deleteOnAction(ActionEvent event) throws IOException {
+        String id = txtId.getText();
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Room room = session.load(Room.class, id);
+        session.delete(room);
+        transaction.commit();
+        session.close();
     }
 
     public void setCmbRoomType() {
