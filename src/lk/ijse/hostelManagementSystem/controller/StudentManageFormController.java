@@ -111,13 +111,13 @@ public class StudentManageFormController implements Initializable {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         Student student = session.get(Student.class, id);
-        if (student != null){
+        if (student != null) {
             txtName.setText(student.getName());
             txtAddress.setText(student.getAddress());
             txtContact.setText(student.getContact());
             txtDob.setValue(student.getDob());
             cmbGender.setValue(student.getGender());
-        }else {
+        } else {
             new Alert(Alert.AlertType.WARNING, "Not Found Student !").show();
         }
         transaction.commit();
@@ -134,7 +134,7 @@ public class StudentManageFormController implements Initializable {
         String gender = cmbGender.getValue();
         LocalDate registerDate = LocalDate.parse(lblDate.getText());
 
-        Student student = new Student(id,name,address,contact,dob,gender,registerDate);
+        Student student = new Student(id, name, address, contact, dob, gender, registerDate);
 
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
@@ -145,8 +145,14 @@ public class StudentManageFormController implements Initializable {
 
 
     @FXML
-    void deleteOnAction(ActionEvent event) {
-
+    void deleteOnAction(ActionEvent event) throws IOException {
+        String id = txtId.getText();
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Student student = session.load(Student.class, id);
+        session.delete(student);
+        transaction.commit();
+        session.close();
     }
 
     @FXML
