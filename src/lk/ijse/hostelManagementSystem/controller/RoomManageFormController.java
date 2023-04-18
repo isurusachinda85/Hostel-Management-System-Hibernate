@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -96,8 +97,21 @@ public class RoomManageFormController implements Initializable {
     }
 
     @FXML
-    void searchOnAction(ActionEvent event) {
-
+    void searchOnAction(ActionEvent event) throws IOException {
+        String id = txtId.getText();
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Room room = session.get(Room.class, id);
+        if (room != null) {
+            txtMonthlyRent.setText(String.valueOf(room.getMonthlyRent()));
+            cmbRoomType.setValue(room.getType());
+            txtqty.setText(String.valueOf(room.getRoomsQty()));
+            txtAddDate.setValue(room.getAddDate());
+        }else {
+            new Alert(Alert.AlertType.WARNING, "Not Found Room !").show();
+        }
+        transaction.commit();
+        session.close();
     }
 
     @FXML
