@@ -88,6 +88,7 @@ public class StudentManageFormController implements Initializable {
         loadTimeAndDate();
         getAllStudent();
         setCellValueFactory();
+
     }
 
     public void setCellValueFactory() {
@@ -141,6 +142,21 @@ public class StudentManageFormController implements Initializable {
         }
         transaction.commit();
         session.close();
+        /*tblStudent.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+
+            if (newValue != null) {
+                txtId.setText(newValue.getSid());
+                txtName.setText(newValue.getName());
+                txtAddress.setText(newValue.getAddress());
+                txtContact.setText(newValue.getContact());
+                txtDob.setValue(newValue.getDob());
+                cmbGender.setValue(newValue.getGender());
+
+                txtId.setDisable(false);
+                txtName.setDisable(false);
+                txtAddress.setDisable(false);
+            }
+        });*/
     }
 
     @FXML

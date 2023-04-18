@@ -2,13 +2,25 @@ package lk.ijse.hostelManagementSystem.controller;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.util.Duration;
 
-public class AddReservationFormController {
+import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ResourceBundle;
+
+public class AddReservationFormController implements Initializable {
 
     @FXML
     private JFXComboBox<?> cmbStudentId;
@@ -56,7 +68,7 @@ public class AddReservationFormController {
     private JFXTextField txtDueRent;
 
     @FXML
-    private JFXComboBox<?> cmbPaymentThisMonth;
+    private JFXComboBox<String> cmbPaymentThisMonth;
 
     @FXML
     private TableView<?> tblReservation;
@@ -91,6 +103,12 @@ public class AddReservationFormController {
     @FXML
     private Label lblTime;
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        loadTimeAndDate();
+        setCmbPaymentThisMonth();
+    }
+
     @FXML
     void clearOnAction(ActionEvent event) {
 
@@ -109,6 +127,25 @@ public class AddReservationFormController {
     @FXML
     void updateOnAction(ActionEvent event) {
 
+    }
+
+    public void setCmbPaymentThisMonth(){
+        ObservableList<String> list = FXCollections.observableArrayList();
+        list.addAll("Paid","Not Paid");
+        cmbPaymentThisMonth.setItems(list);
+    }
+    public void loadTimeAndDate() {
+        Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
+            LocalTime currentTime = LocalTime.now();
+            lblTime.setText(currentTime.getHour() + ":" + currentTime.getMinute() + ":" + currentTime.getSecond());
+        }),
+                new KeyFrame(Duration.seconds(1))
+        );
+        clock.setCycleCount(Animation.INDEFINITE);
+        clock.play();
+
+        LocalDate date = LocalDate.now();
+        lblDate.setText(String.valueOf(date));
     }
 
 }
