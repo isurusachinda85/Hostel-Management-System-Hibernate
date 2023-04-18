@@ -89,7 +89,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="lblDate" layoutX="540.0" layoutY="114.0" text="2023/04/13">
+      <Label fx:id="lblDate" layoutX="540.0" layoutY="114.0">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -99,7 +99,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="lblTime" layoutX="711.0" layoutY="114.0" text="09:00:00" textFill="#030303">
+      <Label fx:id="lblTime" layoutX="711.0" layoutY="114.0" textFill="#030303">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
