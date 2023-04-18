@@ -18,8 +18,8 @@
             <Font name="Bell MT Bold" size="41.0" />
          </font>
       </Label>
-      <JFXComboBox labelFloat="true" layoutX="28.0" layoutY="162.0" prefHeight="31.0" prefWidth="170.0" promptText="Student Id" />
-      <JFXComboBox labelFloat="true" layoutX="285.0" layoutY="163.0" prefHeight="31.0" prefWidth="170.0" promptText="Room Id" />
+      <JFXComboBox fx:id="cmbStudentId" labelFloat="true" layoutX="28.0" layoutY="162.0" prefHeight="31.0" prefWidth="170.0" promptText="Student Id" />
+      <JFXComboBox fx:id="cmbRoomId" labelFloat="true" layoutX="285.0" layoutY="163.0" prefHeight="31.0" prefWidth="170.0" promptText="Room Id" />
       <Label layoutX="286.0" layoutY="222.0" text="Room Type          :">
          <font>
             <Font name="System Bold" size="15.0" />
@@ -82,45 +82,45 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="156.0" layoutY="222.0" />
-      <Label layoutX="156.0" layoutY="255.0" />
-      <Label layoutX="156.0" layoutY="285.0" />
-      <Label layoutX="156.0" layoutY="319.0" />
-      <Label layoutX="156.0" layoutY="353.0" />
-      <Label layoutX="156.0" layoutY="385.0" />
-      <Label layoutX="424.0" layoutY="222.0" />
-      <Label layoutX="424.0" layoutY="254.0" />
-      <Label layoutX="424.0" layoutY="289.0" />
-      <Label layoutX="424.0" layoutY="328.0" />
-      <JFXTextField labelFloat="true" layoutX="592.0" layoutY="157.0" promptText="Monthly Rent">
+      <Label fx:id="name" layoutX="156.0" layoutY="222.0" />
+      <Label fx:id="address" layoutX="156.0" layoutY="255.0" />
+      <Label fx:id="contact" layoutX="156.0" layoutY="285.0" />
+      <Label fx:id="gender" layoutX="156.0" layoutY="319.0" />
+      <Label fx:id="dob" layoutX="156.0" layoutY="353.0" />
+      <Label fx:id="registerDate" layoutX="156.0" layoutY="385.0" />
+      <Label fx:id="type" layoutX="424.0" layoutY="222.0" />
+      <Label fx:id="roomQty" layoutX="424.0" layoutY="254.0" />
+      <Label fx:id="availableQty" layoutX="424.0" layoutY="289.0" />
+      <Label fx:id="roomAddDate" layoutX="424.0" layoutY="328.0" />
+      <JFXTextField fx:id="txtMonthlyRent" labelFloat="true" layoutX="592.0" layoutY="157.0" promptText="Monthly Rent(LKR)">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXTextField>
-      <JFXTextField labelFloat="true" layoutX="592.0" layoutY="213.0" promptText="Paid Key Money(LKR)">
+      <JFXTextField fx:id="txtPaidKeyMoney" labelFloat="true" layoutX="592.0" layoutY="213.0" promptText="Paid Key Money(LKR)">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXTextField>
-      <JFXTextField labelFloat="true" layoutX="592.0" layoutY="269.0" promptText="Due  Key Money(LKR)">
+      <JFXTextField fx:id="txtDueRent" labelFloat="true" layoutX="592.0" layoutY="269.0" promptText="Due Rent(LKR)">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXTextField>
-      <JFXComboBox labelFloat="true" layoutX="592.0" layoutY="321.0" prefHeight="31.0" prefWidth="181.0" promptText="Payment This Month" />
-      <TableView layoutX="12.0" layoutY="448.0" prefHeight="200.0" prefWidth="827.0">
+      <JFXComboBox fx:id="cmbPaymentThisMonth" labelFloat="true" layoutX="592.0" layoutY="321.0" prefHeight="31.0" prefWidth="181.0" promptText="Payment This Month" />
+      <TableView fx:id="tblReservation" layoutX="12.0" layoutY="448.0" prefHeight="200.0" prefWidth="827.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Room Id" />
-          <TableColumn prefWidth="97.0" text="Student Id" />
-            <TableColumn prefWidth="53.0" text="Name" />
-            <TableColumn prefWidth="115.0" text="Monthly Rent" />
-            <TableColumn prefWidth="130.0" text="Paid Key Money" />
-            <TableColumn prefWidth="124.0" text="Due Key Money" />
-            <TableColumn prefWidth="168.0" text="Payment This Month" />
-            <TableColumn prefWidth="64.0" text="Date" />
+          <TableColumn fx:id="colRoomId" prefWidth="75.0" text="Room Id" />
+          <TableColumn fx:id="coolStudentId" prefWidth="97.0" text="Student Id" />
+            <TableColumn fx:id="colName" prefWidth="53.0" text="Name" />
+            <TableColumn fx:id="colMonthlyRent" prefWidth="115.0" text="Monthly Rent" />
+            <TableColumn fx:id="colPaidKeyMoney" prefWidth="130.0" text="Paid Key Money" />
+            <TableColumn fx:id="colDueRent" prefWidth="96.0" text="Due Rent" />
+            <TableColumn fx:id="colPaymentThisMonth" prefWidth="163.0" text="Payment This Month" />
+            <TableColumn fx:id="colDate" prefWidth="97.0" text="Date" />
         </columns>
       </TableView>
-      <JFXButton buttonType="RAISED" layoutX="402.0" layoutY="391.0" prefHeight="31.0" prefWidth="84.0" style="-fx-background-color: #6FEEFF; -fx-background-radius: 6;" text="Reserve">
+      <JFXButton buttonType="RAISED" layoutX="402.0" layoutY="391.0" onAction="#reserveOnAction" prefHeight="31.0" prefWidth="84.0" style="-fx-background-color: #6FEEFF; -fx-background-radius: 6;" text="Reserve">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -128,7 +128,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="504.0" layoutY="391.0" prefHeight="31.0" prefWidth="84.0" style="-fx-background-color: #2ecc71; -fx-background-radius: 6;" text="Update">
+      <JFXButton buttonType="RAISED" layoutX="504.0" layoutY="391.0" onAction="#updateOnAction" prefHeight="31.0" prefWidth="84.0" style="-fx-background-color: #2ecc71; -fx-background-radius: 6;" text="Update">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -136,7 +136,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="604.0" layoutY="391.0" prefHeight="31.0" prefWidth="84.0" style="-fx-background-color: #ea2323; -fx-background-radius: 6;" text="Delete">
+      <JFXButton buttonType="RAISED" layoutX="604.0" layoutY="391.0" onAction="#deleteOnAction" prefHeight="31.0" prefWidth="84.0" style="-fx-background-color: #ea2323; -fx-background-radius: 6;" text="Delete">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -144,7 +144,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="705.0" layoutY="391.0" prefHeight="31.0" prefWidth="84.0" style="-fx-background-color: #EAF55C; -fx-background-radius: 6;" text="Clear">
+      <JFXButton buttonType="RAISED" layoutX="705.0" layoutY="391.0" onAction="#clearOnAction" prefHeight="31.0" prefWidth="84.0" style="-fx-background-color: #EAF55C; -fx-background-radius: 6;" text="Clear">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -157,7 +157,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="748.0" layoutY="69.0" text="2023/04/13">
+      <Label fx:id="lblDate" layoutX="748.0" layoutY="69.0">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -167,7 +167,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="753.0" layoutY="108.0" text="09:00:00" textFill="#030303">
+      <Label fx:id="lblTime" layoutX="753.0" layoutY="108.0" textFill="#030303">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
