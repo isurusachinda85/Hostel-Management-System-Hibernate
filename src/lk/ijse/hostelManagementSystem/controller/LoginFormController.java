@@ -14,9 +14,11 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.hostelManagementSystem.entity.User;
 import lk.ijse.hostelManagementSystem.util.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 
 import java.io.IOException;
@@ -45,9 +47,22 @@ public class LoginFormController {
     }
 
     public void loginOnAction(ActionEvent actionEvent) throws IOException {
-        Stage stage = (Stage) loginContext.getScene().getWindow();
-        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/lk/ijse/hostelManagementSystem/view/DashBoard.fxml"))));
-        stage.centerOnScreen();
+        String userName = txtUserName.getText();
+        String password = txtPassword.getText();
+        Session session = FactoryConfiguration.getInstance().getSession();
+        String hql = "From User where userName =:user_name and password=:password";
+        Query query = session.createQuery(hql);
+        query.setParameter("user_name",userName);
+        query.setParameter("password",password);
+        User user = (User) query.uniqueResult();
+        if (user != null) {
+            Stage stage = (Stage) loginContext.getScene().getWindow();
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/lk/ijse/hostelManagementSystem/view/DashBoard.fxml"))));
+            stage.centerOnScreen();
+        }else {
+            System.out.println("error");
+        }
+        session.close();
 
     }
 

@@ -16,6 +16,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
+import lk.ijse.hostelManagementSystem.entity.Reserve;
 import lk.ijse.hostelManagementSystem.entity.Room;
 import lk.ijse.hostelManagementSystem.entity.Student;
 import lk.ijse.hostelManagementSystem.util.FactoryConfiguration;
@@ -124,7 +125,23 @@ public class AddReservationFormController implements Initializable {
     }
 
     @FXML
-    void clearOnAction(ActionEvent event) {
+    void reserveOnAction(ActionEvent event) {
+        String roomId = cmbRoomId.getValue();
+        String studentId = cmbStudentId.getValue();
+        String studentName = name.getText();
+        double monthlyRent = Double.parseDouble(txtMonthlyRent.getText());
+        double paidKeyMoney = Double.parseDouble(txtPaidKeyMoney.getText());
+        double dueRent = Double.parseDouble(txtDueRent.getText());
+        String paymentThisMonth = cmbPaymentThisMonth.getValue();
+        LocalDate reserveDate = LocalDate.parse(lblDate.getText());
+        String reserveId = roomId+"-"+studentId;
+
+
+        //Reserve reserve = new Reserve(reserveId,reserveDate,studentName,monthlyRent,paidKeyMoney,dueRent,paymentThisMonth,roomId,studentId);
+    }
+
+    @FXML
+    void updateOnAction(ActionEvent event) {
 
     }
 
@@ -134,12 +151,23 @@ public class AddReservationFormController implements Initializable {
     }
 
     @FXML
-    void reserveOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void updateOnAction(ActionEvent event) {
+    void clearOnAction(ActionEvent event) {
+        name.setText("");
+        address.setText("");
+        contact.setText("");
+        gender.setText("");
+        dob.setText("");
+        registerDate.setText("");
+        type.setText("");
+        roomQty.setText("");
+        availableQty.setText("");
+        roomAddDate.setText("");
+        txtMonthlyRent.clear();
+        txtPaidKeyMoney.clear();
+        txtDueRent.clear();
+        cmbPaymentThisMonth.getSelectionModel().clearSelection();
+        /*cmbStudentId.getSelectionModel().clearSelection();
+        cmbRoomId.getSelectionModel().clearSelection();*/
 
     }
 
@@ -222,9 +250,9 @@ public class AddReservationFormController implements Initializable {
         txtDueRent.setText(String.valueOf(balance));
 
         double a = Double.parseDouble(txtDueRent.getText());
-        if (a<=0){
+        if (a <= 0) {
             cmbPaymentThisMonth.setValue("Paid");
-        }else {
+        } else {
             cmbPaymentThisMonth.setValue("Not Paid");
         }
     }
