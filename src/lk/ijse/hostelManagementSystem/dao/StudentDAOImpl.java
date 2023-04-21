@@ -1,8 +1,5 @@
 package lk.ijse.hostelManagementSystem.dao;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.control.Alert;
 import lk.ijse.hostelManagementSystem.entity.Student;
 import lk.ijse.hostelManagementSystem.util.FactoryConfiguration;
 import org.hibernate.Session;
@@ -10,7 +7,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.io.IOException;
-import java.util.ArrayList;
+
 import java.util.List;
 
 public class StudentDAOImpl {

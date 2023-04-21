@@ -17,6 +17,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Duration;
+import lk.ijse.hostelManagementSystem.dao.RoomDAOImpl;
 import lk.ijse.hostelManagementSystem.entity.Room;
 import lk.ijse.hostelManagementSystem.util.FactoryConfiguration;
 import lombok.SneakyThrows;
@@ -75,7 +76,6 @@ public class RoomManageFormController implements Initializable {
     @FXML
     private Label lblTime;
 
-    @SneakyThrows
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadTimeAndDate();
@@ -92,8 +92,9 @@ public class RoomManageFormController implements Initializable {
         colAvailableQty.setCellValueFactory(new PropertyValueFactory<>("availableQty"));
         colAddDate.setCellValueFactory(new PropertyValueFactory<>("addDate"));
     }
+
     @FXML
-    void saveOnAction(ActionEvent event) throws IOException {
+    void saveOnAction(ActionEvent event) {
         String id = txtId.getText();
         String type = cmbRoomType.getValue();
         double rent = Double.parseDouble(txtMonthlyRent.getText());
@@ -101,38 +102,47 @@ public class RoomManageFormController implements Initializable {
         int availabelQty = Integer.parseInt(txtqty.getText());
         LocalDate addDate = txtAddDate.getValue();
 
-        Room room = new Room(id,type,rent,roomQty,availabelQty,addDate);
+        Room room = new Room(id, type, rent, roomQty, availabelQty, addDate);
 
-        Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
-        session.save(room);
-        transaction.commit();
-        session.close();
-
-        getAllRoom();
-        clearOnAction(event);
-    }
-
-    @FXML
-    void searchOnAction(ActionEvent event) throws IOException {
-        String id = txtId.getText();
-        Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
-        Room room = session.get(Room.class, id);
-        if (room != null) {
-            txtMonthlyRent.setText(String.valueOf(room.getMonthlyRent()));
-            cmbRoomType.setValue(room.getType());
-            txtqty.setText(String.valueOf(room.getRoomsQty()));
-            txtAddDate.setValue(room.getAddDate());
-        }else {
-            new Alert(Alert.AlertType.WARNING, "Not Found Room !").show();
+        RoomDAOImpl roomDAO = new RoomDAOImpl();
+        try {
+            boolean saveRoom = roomDAO.saveRoom(room);
+            if (saveRoom) {
+                new Alert(Alert.AlertType.INFORMATION, "Save Room !").show();
+            } else {
+                new Alert(Alert.AlertType.WARNING, "Not Save Room !").show();
+            }
+            getAllRoom();
+        } catch (IOException e) {
+            System.out.println(e);
         }
-        transaction.commit();
-        session.close();
+        clearOnAction(event);
     }
 
     @FXML
-    void updateOnAction(ActionEvent event) throws IOException {
+    void searchOnAction(ActionEvent event) {
+        String id = txtId.getText();
+
+        RoomDAOImpl roomDAO = new RoomDAOImpl();
+        try {
+            Room room = roomDAO.searchRoom(id);
+            if (room != null) {
+                txtMonthlyRent.setText(String.valueOf(room.getMonthlyRent()));
+                cmbRoomType.setValue(room.getType());
+                txtqty.setText(String.valueOf(room.getRoomsQty()));
+                txtAddDate.setValue(room.getAddDate());
+            } else {
+                new Alert(Alert.AlertType.WARNING, "Not Found Room !").show();
+            }
+
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+
+    }
+
+    @FXML
+    void updateOnAction(ActionEvent event) {
         String id = txtId.getText();
         String type = cmbRoomType.getValue();
         double rent = Double.parseDouble(txtMonthlyRent.getText());
@@ -140,53 +150,60 @@ public class RoomManageFormController implements Initializable {
         int availabelQty = Integer.parseInt(txtqty.getText());
         LocalDate addDate = txtAddDate.getValue();
 
-        Room room = new Room(id,type,rent,roomQty,availabelQty,addDate);
+        Room room = new Room(id, type, rent, roomQty, availabelQty, addDate);
 
-        Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
-        session.update(room);
-        transaction.commit();
-        session.close();
-
-        getAllRoom();
+        RoomDAOImpl roomDAO = new RoomDAOImpl();
+        try {
+            boolean updateRoom = roomDAO.updateRoom(room);
+            if (updateRoom) {
+                new Alert(Alert.AlertType.INFORMATION, "Updated !").show();
+            }
+            getAllRoom();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
         clearOnAction(event);
     }
 
     @FXML
-    void deleteOnAction(ActionEvent event) throws IOException {
+    void deleteOnAction(ActionEvent event) {
         String id = txtId.getText();
-        Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
-        Room room = session.load(Room.class, id);
-        session.delete(room);
-        transaction.commit();
-        session.close();
 
-        getAllRoom();
+        RoomDAOImpl roomDAO = new RoomDAOImpl();
+        try {
+            boolean deleteRoom = roomDAO.deleteRoom(id);
+            if (deleteRoom) {
+                new Alert(Alert.AlertType.INFORMATION, "Delete Room !").show();
+            }
+            getAllRoom();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+
         clearOnAction(event);
     }
-    public void getAllRoom() throws IOException {
-        ObservableList<Room>roomList = FXCollections.observableArrayList();
+
+    public void getAllRoom() {
+        ObservableList<Room> roomList = FXCollections.observableArrayList();
 
         roomList.clear();
 
-        String hql = "FROM Room";
-
-        Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
-        Query query = session.createQuery(hql);
-        List<Room> list = query.list();
-        for (Room room : list) {
-            roomList.add(room);
+        RoomDAOImpl roomDAO = new RoomDAOImpl();
+        try {
+            List<Room> list = roomDAO.getAllRoom();
+            for (Room room : list) {
+                roomList.add(room);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
         tblRoom.setItems(roomList);
-        transaction.commit();
-        session.close();
     }
 
     public void setCmbRoomType() {
-        ObservableList<String>list = FXCollections.observableArrayList();
-        list.addAll("Non-AC","Non-AC/Food","AC","AC/Food");
+        ObservableList<String> list = FXCollections.observableArrayList();
+        list.addAll("Non-AC", "Non-AC/Food", "AC", "AC/Food");
         cmbRoomType.setItems(list);
     }
 

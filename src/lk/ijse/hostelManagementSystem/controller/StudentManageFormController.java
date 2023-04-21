@@ -82,14 +82,12 @@ public class StudentManageFormController implements Initializable {
     @FXML
     private Label lblTime;
 
-    @SneakyThrows
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setCmbGender();
         loadTimeAndDate();
         getAllStudent();
         setCellValueFactory();
-
     }
 
     public void setCellValueFactory() {
@@ -215,16 +213,19 @@ public class StudentManageFormController implements Initializable {
         clearTextOnAction(event);
     }
 
-    public void getAllStudent() throws IOException {
+    public void getAllStudent(){
         ObservableList<Student> studentList = FXCollections.observableArrayList();
 
         studentList.clear();
 
         StudentDAOImpl studentDAO = new StudentDAOImpl();
-        List<Student> list = studentDAO.getAllStudent();
-
-        for (Student student : list) {
-            studentList.add(student);
+        try {
+            List<Student> list = studentDAO.getAllStudent();
+            for (Student student : list) {
+                studentList.add(student);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         tblStudent.setItems(studentList);
 
