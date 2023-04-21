@@ -135,9 +135,8 @@ public class StudentManageFormController implements Initializable {
     void searchOnAction(ActionEvent event) throws IOException {
         String id = txtId.getText();
 
-        Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
-        Student student = session.get(Student.class, id);
+        StudentDAOImpl studentDAO = new StudentDAOImpl();
+        Student student = studentDAO.searchStudent(id);
         if (student != null) {
             txtName.setText(student.getName());
             txtAddress.setText(student.getAddress());
@@ -147,8 +146,7 @@ public class StudentManageFormController implements Initializable {
         } else {
             new Alert(Alert.AlertType.WARNING, "Not Found Student !").show();
         }
-        transaction.commit();
-        session.close();
+
         /*tblStudent.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 
             if (newValue != null) {

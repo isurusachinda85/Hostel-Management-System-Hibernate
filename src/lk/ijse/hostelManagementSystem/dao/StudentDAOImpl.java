@@ -1,5 +1,6 @@
 package lk.ijse.hostelManagementSystem.dao;
 
+import javafx.scene.control.Alert;
 import lk.ijse.hostelManagementSystem.entity.Student;
 import lk.ijse.hostelManagementSystem.util.FactoryConfiguration;
 import org.hibernate.Session;
@@ -15,5 +16,13 @@ public class StudentDAOImpl {
         transaction.commit();
         session.close();
         return true;
+    }
+    public Student searchStudent(String id) throws IOException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Student student = session.get(Student.class, id);
+        transaction.commit();
+        session.close();
+        return student;
     }
 }
