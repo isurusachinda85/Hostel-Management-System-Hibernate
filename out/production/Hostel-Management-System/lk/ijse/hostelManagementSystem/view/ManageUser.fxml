@@ -19,42 +19,42 @@
             <Font name="System Bold" size="42.0" />
          </font>
       </Label>
-      <JFXTextField labelFloat="true" layoutX="143.0" layoutY="179.0" prefHeight="31.0" prefWidth="278.0" promptText="Current User Name">
+      <JFXTextField fx:id="txtCurrentUserName" labelFloat="true" layoutX="143.0" layoutY="214.0" prefHeight="31.0" prefWidth="278.0" promptText="Current User Name">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXTextField>
-      <JFXPasswordField labelFloat="true" layoutX="143.0" layoutY="250.0" prefHeight="31.0" prefWidth="278.0" promptText="Current Password">
+      <JFXPasswordField fx:id="txtCurrentPassword" labelFloat="true" layoutX="143.0" layoutY="285.0" prefHeight="31.0" prefWidth="278.0" promptText="Current Password">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXPasswordField>
-      <JFXPasswordField labelFloat="true" layoutX="143.0" layoutY="471.0" prefHeight="31.0" prefWidth="278.0" promptText="Confirm Password">
+      <JFXPasswordField fx:id="txtConfirmPassword" labelFloat="true" layoutX="143.0" layoutY="506.0" prefHeight="31.0" prefWidth="278.0" promptText="Confirm Password">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXPasswordField>
-      <ImageView fitHeight="21.0" fitWidth="24.0" layoutX="402.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="21.0" fitWidth="24.0" layoutX="402.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@assest/user%20(1).png" />
          </image>
       </ImageView>
-      <JFXTextField labelFloat="true" layoutX="143.0" layoutY="318.0" prefHeight="31.0" prefWidth="278.0" promptText="New User Name">
+      <JFXTextField fx:id="txtNewUserName" labelFloat="true" layoutX="143.0" layoutY="353.0" prefHeight="31.0" prefWidth="278.0" promptText="New User Name">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXTextField>
-      <ImageView fitHeight="21.0" fitWidth="24.0" layoutX="402.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="21.0" fitWidth="24.0" layoutX="402.0" layoutY="358.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@assest/user%20(1).png" />
          </image>
       </ImageView>
-      <JFXPasswordField labelFloat="true" layoutX="143.0" layoutY="394.0" prefHeight="31.0" prefWidth="278.0" promptText="New Password">
+      <JFXPasswordField fx:id="txtNewPassword" labelFloat="true" layoutX="143.0" layoutY="429.0" prefHeight="31.0" prefWidth="278.0" promptText="New Password">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXPasswordField>
-      <JFXButton buttonType="RAISED" layoutX="365.0" layoutY="539.0" prefHeight="37.0" prefWidth="117.0" style="-fx-background-color: #2AD587; -fx-background-radius: 7;" text="Update" textOverrun="CLIP">
+      <JFXButton buttonType="RAISED" layoutX="365.0" layoutY="574.0" onAction="#updateOnAction" prefHeight="37.0" prefWidth="117.0" style="-fx-background-color: #2AD587; -fx-background-radius: 7;" text="Update" textOverrun="CLIP">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -65,7 +65,7 @@
             <Shadow height="0.0" radius="0.0" width="0.0" />
          </effect>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="506.0" layoutY="539.0" prefHeight="37.0" prefWidth="117.0" style="-fx-background-color: #ea2323; -fx-background-radius: 6;" text="Cancel">
+      <JFXButton buttonType="RAISED" layoutX="506.0" layoutY="574.0" onAction="#cancelOnAction" prefHeight="37.0" prefWidth="117.0" style="-fx-background-color: #ea2323; -fx-background-radius: 6;" text="Cancel">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -73,5 +73,10 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXButton>
+      <JFXTextField fx:id="txtUserId" labelFloat="true" layoutX="143.0" layoutY="156.0" onAction="#userOnAction" prefHeight="31.0" prefWidth="278.0" promptText="User Id">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </JFXTextField>
    </children>
 </AnchorPane>
