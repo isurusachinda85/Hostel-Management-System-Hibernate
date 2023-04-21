@@ -10,6 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 
 
 public class DashBoardController {
@@ -48,7 +49,10 @@ public class DashBoardController {
     void viewReservationOnAction(ActionEvent event) throws IOException {
         setUi("/lk/ijse/hostelManagementSystem/view/viewReservationForm");
     }
-
+    @FXML
+    void settingOnAction(ActionEvent event) throws IOException {
+        setUi("/lk/ijse/hostelManagementSystem/view/ManageUser");
+    }
     private void setUi(String ui) throws IOException {
         Parent load = FXMLLoader.load(getClass().getResource(ui + ".fxml"));
         mainContext.getChildren().clear();

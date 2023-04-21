@@ -18,9 +18,12 @@ public class User {
     private String userName;
     @Column(unique = true)
     private String password;
+    @Column(unique = true)
+    private String confirmPassword;
 
-    public User(String userName, String password) {
+    public User(String userName, String password, String confirmPassword) {
         this.userName = userName;
         this.password = password;
+        this.confirmPassword = confirmPassword;
     }
 }

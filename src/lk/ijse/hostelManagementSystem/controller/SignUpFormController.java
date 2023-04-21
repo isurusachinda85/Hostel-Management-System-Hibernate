@@ -30,8 +30,9 @@ public class SignUpFormController {
     public void registerOnAction(ActionEvent actionEvent) throws IOException {
         String userName = txtUserName.getText();
         String password = txtPassword.getText();
+        String confirmPassword = txtConfirmPassword.getText();
 
-        User user = new User(userName, password);
+        User user = new User(userName, password,confirmPassword);
 
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
