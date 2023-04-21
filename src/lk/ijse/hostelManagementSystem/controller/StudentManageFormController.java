@@ -17,6 +17,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Duration;
+import lk.ijse.hostelManagementSystem.dao.StudentDAOImpl;
 import lk.ijse.hostelManagementSystem.entity.Student;
 import lk.ijse.hostelManagementSystem.util.FactoryConfiguration;
 import lombok.SneakyThrows;
@@ -102,7 +103,7 @@ public class StudentManageFormController implements Initializable {
     }
 
     @FXML
-    void saveOnAction(ActionEvent event) throws IOException {
+    void saveOnAction(ActionEvent event){
         String id = txtId.getText();
         String name = txtName.getText();
         String address = txtAddress.getText();
@@ -113,15 +114,21 @@ public class StudentManageFormController implements Initializable {
 
         Student student = new Student(id, name, address, contact, dob, gender, registerDate);
 
-        Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
-        session.save(student);
-        transaction.commit();
-        session.close();
+        StudentDAOImpl studentDAO = new StudentDAOImpl();
+        try {
+            boolean saveStudent = studentDAO.saveStudent(student);
+            if (saveStudent) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Save Student !").show();
+            }else {
+                new Alert(Alert.AlertType.WARNING, "Not Save Student !").show();
+            }
+            getAllStudent();
+        } catch (IOException e) {
+
+        }
 
         clearTextOnAction(event);
 
-        getAllStudent();
     }
 
     @FXML

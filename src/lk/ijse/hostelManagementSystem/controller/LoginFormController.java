@@ -74,6 +74,16 @@ public class LoginFormController {
         stage.centerOnScreen();
     }
 
+    @FXML
+    void userNameOnAction(ActionEvent event) {
+        txtPassword.requestFocus();
+    }
+
+    @FXML
+    void paswordOnAction(ActionEvent event) throws IOException {
+        loginOnAction(event);
+    }
+
     public void successNotification() {
         Notifications notificationBuilder = Notifications.create()
                 .title("Success !")
@@ -84,7 +94,8 @@ public class LoginFormController {
         notificationBuilder.darkStyle();
         notificationBuilder.show();
     }
-    public void failNotification(){
+
+    public void failNotification() {
         Notifications notificationBuilder = Notifications.create()
                 .title("UnSuccessful !")
                 .text("Please enter Correct User Name or Password.Try Again.!")

@@ -19,8 +19,8 @@
             <Image url="@assest/login.png" />
          </image>
       </ImageView>
-      <JFXTextField fx:id="txtUserName" focusColor="#3064ff" labelFloat="true" layoutX="51.0" layoutY="186.0" prefHeight="31.0" prefWidth="245.0" promptText="User Name" unFocusColor="#252323" />
-      <JFXPasswordField fx:id="txtPassword" labelFloat="true" layoutX="51.0" layoutY="284.0" prefHeight="31.0" prefWidth="245.0" promptText="Password" />
+      <JFXTextField fx:id="txtUserName" focusColor="#3064ff" labelFloat="true" layoutX="51.0" layoutY="186.0" onAction="#userNameOnAction" prefHeight="31.0" prefWidth="245.0" promptText="User Name" unFocusColor="#252323" />
+      <JFXPasswordField fx:id="txtPassword" labelFloat="true" layoutX="51.0" layoutY="284.0" onAction="#paswordOnAction" prefHeight="31.0" prefWidth="245.0" promptText="Password" />
       <JFXToggleNode fx:id="btnTogle" layoutX="252.0" layoutY="283.0" onAction="#togleOnAction" onKeyTyped="#passwordType" prefHeight="31.0" prefWidth="40.0">
          <graphic>
             <ImageView fitHeight="24.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
