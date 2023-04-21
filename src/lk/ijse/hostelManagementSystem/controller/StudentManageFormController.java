@@ -118,13 +118,13 @@ public class StudentManageFormController implements Initializable {
         try {
             boolean saveStudent = studentDAO.saveStudent(student);
             if (saveStudent) {
-                new Alert(Alert.AlertType.CONFIRMATION, "Save Student !").show();
+                new Alert(Alert.AlertType.INFORMATION, "Save Student !").show();
             }else {
                 new Alert(Alert.AlertType.WARNING, "Not Save Student !").show();
             }
             getAllStudent();
         } catch (IOException e) {
-
+            System.out.println(e);
         }
 
         clearTextOnAction(event);
@@ -132,20 +132,25 @@ public class StudentManageFormController implements Initializable {
     }
 
     @FXML
-    void searchOnAction(ActionEvent event) throws IOException {
+    void searchOnAction(ActionEvent event){
         String id = txtId.getText();
 
         StudentDAOImpl studentDAO = new StudentDAOImpl();
-        Student student = studentDAO.searchStudent(id);
-        if (student != null) {
-            txtName.setText(student.getName());
-            txtAddress.setText(student.getAddress());
-            txtContact.setText(student.getContact());
-            txtDob.setValue(student.getDob());
-            cmbGender.setValue(student.getGender());
-        } else {
-            new Alert(Alert.AlertType.WARNING, "Not Found Student !").show();
+        try {
+            Student student = studentDAO.searchStudent(id);
+            if (student != null) {
+                txtName.setText(student.getName());
+                txtAddress.setText(student.getAddress());
+                txtContact.setText(student.getContact());
+                txtDob.setValue(student.getDob());
+                cmbGender.setValue(student.getGender());
+            } else {
+                new Alert(Alert.AlertType.WARNING, "Not Found Student !").show();
+            }
+        } catch (IOException e) {
+            System.out.println(e);
         }
+
 
         /*tblStudent.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 
@@ -165,7 +170,7 @@ public class StudentManageFormController implements Initializable {
     }
 
     @FXML
-    void updateOnAction(ActionEvent event) throws IOException {
+    void updateOnAction(ActionEvent event){
         String id = txtId.getText();
         String name = txtName.getText();
         String address = txtAddress.getText();
@@ -176,29 +181,38 @@ public class StudentManageFormController implements Initializable {
 
         Student student = new Student(id, name, address, contact, dob, gender, registerDate);
 
-        Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
-        session.update(student);
-        transaction.commit();
-        session.close();
+        StudentDAOImpl studentDAO = new StudentDAOImpl();
+        try {
+            boolean updateStudent = studentDAO.updateStudent(student);
+            if (updateStudent) {
+                new Alert(Alert.AlertType.INFORMATION, "Updated !").show();
+            }
+            getAllStudent();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
 
         clearTextOnAction(event);
-        getAllStudent();
     }
 
 
     @FXML
-    void deleteOnAction(ActionEvent event) throws IOException {
+    void deleteOnAction(ActionEvent event){
         String id = txtId.getText();
-        Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
-        Student student = session.load(Student.class, id);
-        session.delete(student);
-        transaction.commit();
-        session.close();
 
+        StudentDAOImpl studentDAO = new StudentDAOImpl();
+        try {
+            boolean deleteStudent = studentDAO.deleteStudent(id);
+            if (deleteStudent) {
+                new Alert(Alert.AlertType.INFORMATION, "Delete Student !").show();
+            }else {
+                new Alert(Alert.AlertType.WARNING, "Not Found Student !").show();
+            }
+            getAllStudent();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
         clearTextOnAction(event);
-        getAllStudent();
     }
 
     public void getAllStudent() throws IOException {
@@ -206,18 +220,14 @@ public class StudentManageFormController implements Initializable {
 
         studentList.clear();
 
-        String hql = "FROM Student";
+        StudentDAOImpl studentDAO = new StudentDAOImpl();
+        List<Student> list = studentDAO.getAllStudent();
 
-        Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
-        Query query = session.createQuery(hql);
-        List<Student> list = query.list();
         for (Student student : list) {
             studentList.add(student);
         }
         tblStudent.setItems(studentList);
-        transaction.commit();
-        session.close();
+
     }
 
     @FXML
