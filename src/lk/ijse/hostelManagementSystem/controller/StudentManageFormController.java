@@ -84,7 +84,7 @@ public class StudentManageFormController implements Initializable {
     @FXML
     private Label lblTime;
 
-    private final CrudDAO crudDAO = new StudentDAOImpl();
+    private final StudentDAO studentDAO = new StudentDAOImpl();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -117,7 +117,7 @@ public class StudentManageFormController implements Initializable {
         Student student = new Student(id, name, address, contact, dob, gender, registerDate);
 
         try {
-            boolean saveStudent = crudDAO.save(student);
+            boolean saveStudent = studentDAO.save(student);
             if (saveStudent) {
                 new Alert(Alert.AlertType.INFORMATION, "Save Student !").show();
             } else {
@@ -137,7 +137,7 @@ public class StudentManageFormController implements Initializable {
         String id = txtId.getText();
 
         try {
-            Student student = (Student) crudDAO.search(id);
+            Student student = studentDAO.search(id);
             if (student != null) {
                 txtName.setText(student.getName());
                 txtAddress.setText(student.getAddress());
@@ -182,7 +182,7 @@ public class StudentManageFormController implements Initializable {
         Student student = new Student(id, name, address, contact, dob, gender, registerDate);
 
         try {
-            boolean updateStudent = crudDAO.update(student);
+            boolean updateStudent = studentDAO.update(student);
             if (updateStudent) {
                 new Alert(Alert.AlertType.INFORMATION, "Updated !").show();
             }
@@ -200,7 +200,7 @@ public class StudentManageFormController implements Initializable {
         String id = txtId.getText();
 
         try {
-            boolean deleteStudent = crudDAO.delete(id);
+            boolean deleteStudent = studentDAO.delete(id);
             if (deleteStudent) {
                 new Alert(Alert.AlertType.INFORMATION, "Delete Student !").show();
             } else {
@@ -219,7 +219,7 @@ public class StudentManageFormController implements Initializable {
         studentList.clear();
 
         try {
-            List<Student> list = crudDAO.getAll();
+            List<Student> list = studentDAO.getAll();
             for (Student student : list) {
                 studentList.add(student);
             }
