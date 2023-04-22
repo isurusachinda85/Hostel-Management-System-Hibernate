@@ -17,6 +17,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Duration;
+import lk.ijse.hostelManagementSystem.bo.BOFactory;
 import lk.ijse.hostelManagementSystem.bo.custom.impl.RoomBOImpl;
 import lk.ijse.hostelManagementSystem.bo.custom.RoomBO;
 import lk.ijse.hostelManagementSystem.entity.Room;
@@ -72,7 +73,7 @@ public class RoomManageFormController implements Initializable {
     @FXML
     private Label lblTime;
 
-    private final RoomBO roomBO = new RoomBOImpl();
+    private final RoomBO roomBO = (RoomBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.ROOM);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

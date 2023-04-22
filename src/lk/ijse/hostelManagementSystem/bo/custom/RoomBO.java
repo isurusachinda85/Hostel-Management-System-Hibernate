@@ -1,11 +1,12 @@
 package lk.ijse.hostelManagementSystem.bo.custom;
 
+import lk.ijse.hostelManagementSystem.bo.SuperBO;
 import lk.ijse.hostelManagementSystem.entity.Room;
 
 import java.io.IOException;
 import java.util.List;
 
-public interface RoomBO {
+public interface RoomBO extends SuperBO {
     boolean saveRoom(Room dto) throws IOException;
 
     Room searchRoom(String id) throws IOException;

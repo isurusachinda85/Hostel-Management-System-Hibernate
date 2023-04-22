@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import lk.ijse.hostelManagementSystem.bo.BOFactory;
 import lk.ijse.hostelManagementSystem.bo.custom.UserBO;
 import lk.ijse.hostelManagementSystem.bo.custom.impl.UserBOImpl;
 import lk.ijse.hostelManagementSystem.entity.User;
@@ -31,7 +32,7 @@ public class SignUpFormController {
     @FXML
     private JFXPasswordField txtConfirmPassword;
 
-    private final UserBO userBO = new UserBOImpl();
+    private final UserBO userBO = (UserBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.USER);
 
     public void registerOnAction(ActionEvent actionEvent) {
         String userName = txtUserName.getText();

@@ -15,6 +15,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
+import lk.ijse.hostelManagementSystem.bo.BOFactory;
 import lk.ijse.hostelManagementSystem.bo.custom.ReservationBO;
 import lk.ijse.hostelManagementSystem.bo.custom.impl.ReservationBOImpl;
 import lk.ijse.hostelManagementSystem.entity.Room;
@@ -110,7 +111,7 @@ public class AddReservationFormController implements Initializable {
     @FXML
     private Label lblTime;
 
-    private final ReservationBO reservationBO = new ReservationBOImpl();
+    private final ReservationBO reservationBO = (ReservationBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.RESERVE);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

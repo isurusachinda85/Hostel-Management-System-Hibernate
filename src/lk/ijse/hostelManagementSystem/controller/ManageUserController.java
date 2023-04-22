@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import lk.ijse.hostelManagementSystem.bo.BOFactory;
 import lk.ijse.hostelManagementSystem.bo.custom.UserBO;
 import lk.ijse.hostelManagementSystem.bo.custom.impl.UserBOImpl;
 import lk.ijse.hostelManagementSystem.entity.User;
@@ -31,7 +32,7 @@ public class ManageUserController {
     @FXML
     private JFXTextField txtUserId;
 
-    private final UserBO userBO = new UserBOImpl();
+    private final UserBO userBO = (UserBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.USER);
 
     @FXML
     void updateOnAction(ActionEvent event) {

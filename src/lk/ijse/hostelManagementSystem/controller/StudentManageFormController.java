@@ -17,9 +17,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Duration;
+import lk.ijse.hostelManagementSystem.bo.BOFactory;
 import lk.ijse.hostelManagementSystem.bo.custom.StudentBO;
 import lk.ijse.hostelManagementSystem.bo.custom.impl.StudentBOImpl;
 import lk.ijse.hostelManagementSystem.entity.Student;
+import lk.ijse.hostelManagementSystem.util.FactoryConfiguration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -77,7 +79,7 @@ public class StudentManageFormController implements Initializable {
     @FXML
     private Label lblTime;
 
-    private final StudentBO studentBO = new StudentBOImpl();
+    private final StudentBO studentBO = (StudentBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.STUDENT);
 
 
     @Override

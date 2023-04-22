@@ -1,11 +1,12 @@
 package lk.ijse.hostelManagementSystem.bo.custom;
 
+import lk.ijse.hostelManagementSystem.bo.SuperBO;
 import lk.ijse.hostelManagementSystem.entity.Student;
 
 import java.io.IOException;
 import java.util.List;
 
-public interface StudentBO {
+public interface StudentBO extends SuperBO {
     boolean saveStudent(Student dto) throws IOException;
 
     Student searchStudent(String id) throws IOException;
