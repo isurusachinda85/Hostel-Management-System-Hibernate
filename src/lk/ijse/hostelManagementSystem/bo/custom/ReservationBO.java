@@ -1,6 +1,9 @@
 package lk.ijse.hostelManagementSystem.bo.custom;
 
 import lk.ijse.hostelManagementSystem.bo.SuperBO;
+import lk.ijse.hostelManagementSystem.dto.ReserveDTO;
+import lk.ijse.hostelManagementSystem.dto.RoomDTO;
+import lk.ijse.hostelManagementSystem.dto.StudentDTO;
 import lk.ijse.hostelManagementSystem.entity.Reserve;
 import lk.ijse.hostelManagementSystem.entity.Room;
 import lk.ijse.hostelManagementSystem.entity.Student;
@@ -9,17 +12,17 @@ import java.io.IOException;
 import java.util.List;
 
 public interface ReservationBO extends SuperBO {
-    boolean saveReservation(Reserve dto) throws IOException;
+    boolean saveReservation(ReserveDTO dto) throws IOException;
 
-    boolean updateReservation(Reserve dto);
+    boolean updateReservation(ReserveDTO dto) throws IOException;
 
-    boolean deleteReservation(String id);
+    boolean deleteReservation(String id) throws IOException;
 
-    Student searchStudent(String id) throws IOException;
+    StudentDTO searchStudent(String id) throws IOException;
 
-    Room searchRoom(String id) throws IOException;
+    RoomDTO searchRoom(String id) throws IOException;
 
-    List<Student> getAllStudentId() throws IOException;
+    List<StudentDTO> getAllStudentId() throws IOException;
 
-    List<Room> getAllRoomId() throws IOException;
+    List<RoomDTO> getAllRoomId() throws IOException;
 }

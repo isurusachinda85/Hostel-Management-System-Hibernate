@@ -12,4 +12,10 @@ public class UserDTO {
     private String userName;
     private String password;
     private String confirmPassword;
+
+    public UserDTO(String userName, String password, String confirmPassword) {
+        this.userName = userName;
+        this.password = password;
+        this.confirmPassword = confirmPassword;
+    }
 }
