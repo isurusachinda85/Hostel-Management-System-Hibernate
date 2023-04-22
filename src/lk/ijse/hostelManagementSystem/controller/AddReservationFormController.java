@@ -16,9 +16,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
-import lk.ijse.hostelManagementSystem.dao.ReservationDAOImpl;
-import lk.ijse.hostelManagementSystem.dao.RoomDAOImpl;
-import lk.ijse.hostelManagementSystem.dao.StudentDAOImpl;
+import lk.ijse.hostelManagementSystem.dao.*;
 import lk.ijse.hostelManagementSystem.entity.Reserve;
 import lk.ijse.hostelManagementSystem.entity.Room;
 import lk.ijse.hostelManagementSystem.entity.Student;
@@ -142,7 +140,7 @@ public class AddReservationFormController implements Initializable {
 
 
         /*Reserve reserve = new Reserve(reserveId,reserveDate,studentName,monthlyRent,paidKeyMoney,dueRent,paymentThisMonth,roomId,studentId);
-        ReservationDAOImpl reservationDAO = new ReservationDAOImpl();
+        ReservationDAO reservationDAO = new ReservationDAOImpl();
         try {
             boolean saveReseve = reservationDAO.saveReseve(reserve);
             if (saveReseve) {
@@ -187,7 +185,7 @@ public class AddReservationFormController implements Initializable {
     public void loadStudentId(){
         ObservableList<String> studentList = FXCollections.observableArrayList();
 
-        StudentDAOImpl studentDAO = new StudentDAOImpl();
+        StudentDAO studentDAO = new StudentDAOImpl();
         try {
             List<Student> list = studentDAO.getAllStudent();
             for (Student student : list) {
@@ -203,7 +201,7 @@ public class AddReservationFormController implements Initializable {
     void selectStudentOnAction(ActionEvent event){
         String id = cmbStudentId.getValue();
 
-        StudentDAOImpl studentDAO = new StudentDAOImpl();
+        StudentDAO studentDAO = new StudentDAOImpl();
         try {
             Student student = studentDAO.searchStudent(id);
             if (student != null) {
@@ -223,7 +221,7 @@ public class AddReservationFormController implements Initializable {
     public void loadRoomId(){
         ObservableList<String> roomList = FXCollections.observableArrayList();
 
-        RoomDAOImpl roomDAO = new RoomDAOImpl();
+        RoomDAO roomDAO = new RoomDAOImpl();
         try {
             List<Room> list = roomDAO.getAllRoom();
             for (Room room : list) {
@@ -239,7 +237,7 @@ public class AddReservationFormController implements Initializable {
     void selectRoomOnAction(ActionEvent event){
         String id = cmbRoomId.getValue();
 
-        RoomDAOImpl roomDAO = new RoomDAOImpl();
+        RoomDAO roomDAO = new RoomDAOImpl();
         try {
             Room room = roomDAO.searchRoom(id);
             if (room != null) {
