@@ -20,6 +20,7 @@ import javafx.util.Duration;
 import lk.ijse.hostelManagementSystem.bo.BOFactory;
 import lk.ijse.hostelManagementSystem.bo.custom.StudentBO;
 import lk.ijse.hostelManagementSystem.bo.custom.impl.StudentBOImpl;
+import lk.ijse.hostelManagementSystem.dto.StudentDTO;
 import lk.ijse.hostelManagementSystem.entity.Student;
 import lk.ijse.hostelManagementSystem.util.FactoryConfiguration;
 
@@ -50,7 +51,7 @@ public class StudentManageFormController implements Initializable {
     private JFXComboBox<String> cmbGender;
 
     @FXML
-    private TableView<Student> tblStudent;
+    private TableView<StudentDTO> tblStudent;
 
     @FXML
     private TableColumn<?, ?> colId;
@@ -110,10 +111,8 @@ public class StudentManageFormController implements Initializable {
         String gender = cmbGender.getValue();
         LocalDate registerDate = LocalDate.parse(lblDate.getText());
 
-        Student student = new Student(id, name, address, contact, dob, gender, registerDate);
-
         try {
-            boolean saveStudent = studentBO.saveStudent(student);
+            boolean saveStudent = studentBO.saveStudent(new StudentDTO(id, name, address, contact, dob, gender, registerDate));
             if (saveStudent) {
                 new Alert(Alert.AlertType.INFORMATION, "Save Student !").show();
             } else {
@@ -133,7 +132,7 @@ public class StudentManageFormController implements Initializable {
         String id = txtId.getText();
 
         try {
-            Student student = studentBO.searchStudent(id);
+            StudentDTO student = studentBO.searchStudent(id);
             if (student != null) {
                 txtName.setText(student.getName());
                 txtAddress.setText(student.getAddress());
@@ -175,10 +174,9 @@ public class StudentManageFormController implements Initializable {
         String gender = cmbGender.getValue();
         LocalDate registerDate = LocalDate.parse(lblDate.getText());
 
-        Student student = new Student(id, name, address, contact, dob, gender, registerDate);
 
         try {
-            boolean updateStudent = studentBO.updateStudent(student);
+            boolean updateStudent = studentBO.updateStudent(new StudentDTO(id, name, address, contact, dob, gender, registerDate));
             if (updateStudent) {
                 new Alert(Alert.AlertType.INFORMATION, "Updated !").show();
             }
@@ -210,14 +208,14 @@ public class StudentManageFormController implements Initializable {
     }
 
     public void getAllStudent() {
-        ObservableList<Student> studentList = FXCollections.observableArrayList();
+        ObservableList<StudentDTO> studentList = FXCollections.observableArrayList();
 
         studentList.clear();
 
         try {
-            List<Student> list = studentBO.getAllStudent();
-            for (Student student : list) {
-                studentList.add(student);
+            List<StudentDTO> list = studentBO.getAllStudent();
+            for (StudentDTO studentDTO : list) {
+                studentList.add(studentDTO);
             }
         } catch (IOException e) {
             e.printStackTrace();

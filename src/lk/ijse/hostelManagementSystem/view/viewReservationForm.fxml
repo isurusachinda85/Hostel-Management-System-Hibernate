@@ -1,16 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="676.0" prefWidth="847.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostelManagementSystem.controller.ViewReservationFormController">
    <children>
-      <Label layoutX="269.0" layoutY="143.0" text="view reservation">
+      <Label layoutX="266.0" layoutY="27.0" text="View Reservation" textFill="#2748da">
          <font>
-            <Font size="62.0" />
+            <Font name="Bell MT Bold" size="41.0" />
          </font>
       </Label>
+      <TableView fx:id="tblReservation" layoutX="11.0" layoutY="187.0" prefHeight="373.0" prefWidth="827.0">
+         <columns>
+            <TableColumn fx:id="colRoomId" prefWidth="75.0" text="Room Id" />
+            <TableColumn fx:id="coolStudentId" prefWidth="97.0" text="Student Id" />
+            <TableColumn fx:id="colName" prefWidth="53.0" text="Name" />
+            <TableColumn fx:id="colMonthlyRent" prefWidth="115.0" text="Monthly Rent" />
+            <TableColumn fx:id="colPaidKeyMoney" prefWidth="130.0" text="Paid Key Money" />
+            <TableColumn fx:id="colDueRent" prefWidth="96.0" text="Due Rent" />
+            <TableColumn fx:id="colPaymentThisMonth" prefWidth="163.0" text="Payment This Month" />
+            <TableColumn fx:id="colDate" prefWidth="97.0" text="Date" />
+         </columns>
+      </TableView>
    </children>
 </AnchorPane>

@@ -20,6 +20,7 @@ import javafx.util.Duration;
 import lk.ijse.hostelManagementSystem.bo.BOFactory;
 import lk.ijse.hostelManagementSystem.bo.custom.impl.RoomBOImpl;
 import lk.ijse.hostelManagementSystem.bo.custom.RoomBO;
+import lk.ijse.hostelManagementSystem.dto.RoomDTO;
 import lk.ijse.hostelManagementSystem.entity.Room;
 
 import java.io.IOException;
@@ -44,7 +45,7 @@ public class RoomManageFormController implements Initializable {
     private JFXTextField txtqty;
 
     @FXML
-    private TableView<Room> tblRoom;
+    private TableView<RoomDTO> tblRoom;
 
     @FXML
     private TableColumn<?, ?> colRoomId;
@@ -101,10 +102,9 @@ public class RoomManageFormController implements Initializable {
         int availabelQty = Integer.parseInt(txtqty.getText());
         LocalDate addDate = txtAddDate.getValue();
 
-        Room room = new Room(id, type, rent, roomQty, availabelQty, addDate);
 
         try {
-            boolean saveRoom = roomBO.saveRoom(room);
+            boolean saveRoom = roomBO.saveRoom(new RoomDTO(id, type, rent, roomQty, availabelQty, addDate));
             if (saveRoom) {
                 new Alert(Alert.AlertType.INFORMATION, "Save Room !").show();
             } else {
@@ -121,7 +121,7 @@ public class RoomManageFormController implements Initializable {
     void searchOnAction(ActionEvent event) {
         String id = txtId.getText();
         try {
-            Room room = roomBO.searchRoom(id);
+            RoomDTO room = roomBO.searchRoom(id);
             if (room != null) {
                 txtMonthlyRent.setText(String.valueOf(room.getMonthlyRent()));
                 cmbRoomType.setValue(room.getType());
@@ -132,7 +132,7 @@ public class RoomManageFormController implements Initializable {
             }
 
         } catch (IOException e) {
-            System.out.println(e);
+
         }
 
     }
@@ -146,10 +146,8 @@ public class RoomManageFormController implements Initializable {
         int availabelQty = Integer.parseInt(txtqty.getText());
         LocalDate addDate = txtAddDate.getValue();
 
-        Room room = new Room(id, type, rent, roomQty, availabelQty, addDate);
-
         try {
-            boolean updateRoom = roomBO.updateRoom(room);
+            boolean updateRoom = roomBO.updateRoom(new RoomDTO(id, type, rent, roomQty, availabelQty, addDate));
             if (updateRoom) {
                 new Alert(Alert.AlertType.INFORMATION, "Updated !").show();
             }
@@ -178,14 +176,14 @@ public class RoomManageFormController implements Initializable {
     }
 
     public void getAllRoom() {
-        ObservableList<Room> roomList = FXCollections.observableArrayList();
+        ObservableList<RoomDTO> roomList = FXCollections.observableArrayList();
 
         roomList.clear();
 
         try {
-            List<Room> list = roomBO.getAllRoom();
-            for (Room room : list) {
-                roomList.add(room);
+            List<RoomDTO> list = roomBO.getAllRoom();
+            for (RoomDTO roomDTO : list) {
+                roomList.add(roomDTO);
             }
         } catch (IOException e) {
             e.printStackTrace();

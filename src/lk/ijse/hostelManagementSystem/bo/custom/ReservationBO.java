@@ -25,4 +25,6 @@ public interface ReservationBO extends SuperBO {
     List<StudentDTO> getAllStudentId() throws IOException;
 
     List<RoomDTO> getAllRoomId() throws IOException;
+
+    List<ReserveDTO> getAllReserve() throws IOException;
 }

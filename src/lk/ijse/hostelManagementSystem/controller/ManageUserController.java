@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import lk.ijse.hostelManagementSystem.bo.BOFactory;
 import lk.ijse.hostelManagementSystem.bo.custom.UserBO;
 import lk.ijse.hostelManagementSystem.bo.custom.impl.UserBOImpl;
+import lk.ijse.hostelManagementSystem.dto.UserDTO;
 import lk.ijse.hostelManagementSystem.entity.User;
 
 import java.io.IOException;
@@ -41,10 +42,8 @@ public class ManageUserController {
         String newPassword = txtNewPassword.getText();
         String confirmPassword = txtConfirmPassword.getText();
 
-        User user = new User(id, newUserName, newPassword, confirmPassword);
-
         try {
-            boolean updateUser = userBO.updateUser(user);
+            boolean updateUser = userBO.updateUser(new UserDTO(id,newUserName, newPassword, confirmPassword));
             if (updateUser) {
                 new Alert(Alert.AlertType.INFORMATION, "Updated !").show();
             }
@@ -58,7 +57,7 @@ public class ManageUserController {
         String id = txtUserId.getText();
 
         try {
-            User user = userBO.searchUser(id);
+            UserDTO user = userBO.searchUser(id);
             if (user != null) {
                 txtCurrentUserName.setText(user.getUserName());
                 txtCurrentPassword.setText(user.getPassword());

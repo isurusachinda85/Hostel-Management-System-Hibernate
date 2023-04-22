@@ -14,6 +14,9 @@ import lk.ijse.hostelManagementSystem.dto.StudentDTO;
 import lk.ijse.hostelManagementSystem.entity.Reserve;
 import lk.ijse.hostelManagementSystem.entity.Room;
 import lk.ijse.hostelManagementSystem.entity.Student;
+import lk.ijse.hostelManagementSystem.util.FactoryConfiguration;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,30 +29,32 @@ public class ReservationBOImpl implements ReservationBO {
 
     @Override
     public boolean saveReservation(ReserveDTO dto) throws IOException {
-        return reservationDAO.save(new Reserve(
-                dto.getReserveId(),
-                dto.getDate(),
-                dto.getStudentName(),
-                dto.getMonthlyRent(),
-                dto.getPaidKeyMoney(),
-                dto.getDueKeyMoney(),
-                dto.getPaymentThisMonth(),
-                dto.getRoom(),
-                dto.getStudent()));
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Student student = session.get(Student.class, dto.getStudent());
+        Room room = session.get(Room.class, dto.getRoom());
+        Reserve reserve = new Reserve(dto.getReserveId(),dto.getDate(),dto.getStudentName(),dto.getMonthlyRent(),dto.getPaidKeyMoney(),dto.getDueKeyMoney(),dto.getPaymentThisMonth(),room,student);
+        session.save(reserve);
+
+        room.setAvailableQty(room.getRoomsQty()-1);
+        session.update(room);
+        transaction.commit();
+        session.close();
+        return true;
     }
 
     @Override
     public boolean updateReservation(ReserveDTO dto) throws IOException {
-        return reservationDAO.update(new Reserve(
-                dto.getReserveId(),
-                dto.getDate(),
-                dto.getStudentName(),
-                dto.getMonthlyRent(),
-                dto.getPaidKeyMoney(),
-                dto.getDueKeyMoney(),
-                dto.getPaymentThisMonth(),
-                dto.getRoom(),
-                dto.getStudent()));
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Student student = session.get(Student.class, dto.getStudent());
+        Room room = session.get(Room.class, dto.getRoom());
+        Reserve reserve = new Reserve(dto.getReserveId(),dto.getDate(),dto.getStudentName(),dto.getMonthlyRent(),dto.getPaidKeyMoney(),dto.getDueKeyMoney(),dto.getPaymentThisMonth(),room,student);
+
+        session.update(reserve);
+        transaction.commit();
+        session.close();
+        return true;
     }
 
     @Override
@@ -112,5 +117,24 @@ public class ReservationBOImpl implements ReservationBO {
                     room.getAddDate()));
         }
         return roomList;
+    }
+
+    @Override
+    public List<ReserveDTO> getAllReserve() throws IOException {
+        List<ReserveDTO> reserveList = new ArrayList<>();
+        List<Reserve> all = reservationDAO.getAll();
+        for (Reserve reserve : all) {
+            reserveList.add(new ReserveDTO(
+                    reserve.getReserveId(),
+                    reserve.getDate(),
+                    reserve.getStudentName(),
+                    reserve.getMonthlyRent(),
+                    reserve.getPaidKeyMoney(),
+                    reserve.getDueKeyMoney(),
+                    reserve.getPaymentThisMonth(),
+                    reserve.getRoom(),
+                    reserve.getStudent()));
+        }
+        return reserveList;
     }
 }

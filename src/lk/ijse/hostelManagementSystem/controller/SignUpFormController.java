@@ -15,6 +15,7 @@ import javafx.util.Duration;
 import lk.ijse.hostelManagementSystem.bo.BOFactory;
 import lk.ijse.hostelManagementSystem.bo.custom.UserBO;
 import lk.ijse.hostelManagementSystem.bo.custom.impl.UserBOImpl;
+import lk.ijse.hostelManagementSystem.dto.UserDTO;
 import lk.ijse.hostelManagementSystem.entity.User;
 import org.controlsfx.control.Notifications;
 
@@ -39,10 +40,8 @@ public class SignUpFormController {
         String password = txtPassword.getText();
         String confirmPassword = txtConfirmPassword.getText();
 
-        User user = new User(userName, password, confirmPassword);
-
         try {
-            boolean saveUser = userBO.saveUser(user);
+            boolean saveUser = userBO.saveUser(new UserDTO(userName, password, confirmPassword));
             if (saveUser) {
                 successNotification();
             }
