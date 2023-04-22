@@ -33,6 +33,7 @@ public class ManageUserController {
     @FXML
     private JFXTextField txtUserId;
 
+    private final UserBO userBO = new UserBOImpl();
 
     @FXML
     void updateOnAction(ActionEvent event) {
@@ -43,7 +44,6 @@ public class ManageUserController {
 
         User user = new User(id, newUserName, newPassword, confirmPassword);
 
-        UserBO userBO = new UserBOImpl();
         try {
             boolean updateUser = userBO.updateUser(user);
             if (updateUser) {
@@ -58,7 +58,6 @@ public class ManageUserController {
     void userOnAction(ActionEvent event) {
         String id = txtUserId.getText();
 
-        UserBO userBO = new UserBOImpl();
         try {
             User user = userBO.searchUser(id);
             if (user != null) {

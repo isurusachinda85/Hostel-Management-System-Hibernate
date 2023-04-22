@@ -72,7 +72,7 @@ public class RoomManageFormController implements Initializable {
     @FXML
     private Label lblTime;
 
-
+    private final RoomBO roomBO = new RoomBOImpl();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -102,7 +102,6 @@ public class RoomManageFormController implements Initializable {
 
         Room room = new Room(id, type, rent, roomQty, availabelQty, addDate);
 
-        RoomBO roomBO = new RoomBOImpl();
         try {
             boolean saveRoom = roomBO.saveRoom(room);
             if (saveRoom) {
@@ -120,7 +119,6 @@ public class RoomManageFormController implements Initializable {
     @FXML
     void searchOnAction(ActionEvent event) {
         String id = txtId.getText();
-        RoomBO roomBO = new RoomBOImpl();
         try {
             Room room = roomBO.searchRoom(id);
             if (room != null) {
@@ -149,7 +147,6 @@ public class RoomManageFormController implements Initializable {
 
         Room room = new Room(id, type, rent, roomQty, availabelQty, addDate);
 
-        RoomBO roomBO = new RoomBOImpl();
         try {
             boolean updateRoom = roomBO.updateRoom(room);
             if (updateRoom) {
@@ -166,7 +163,6 @@ public class RoomManageFormController implements Initializable {
     void deleteOnAction(ActionEvent event) {
         String id = txtId.getText();
 
-        RoomBO roomBO = new RoomBOImpl();
         try {
             boolean deleteRoom = roomBO.deleteRoom(id);
             if (deleteRoom) {
@@ -185,7 +181,6 @@ public class RoomManageFormController implements Initializable {
 
         roomList.clear();
 
-        RoomBO roomBO = new RoomBOImpl();
         try {
             List<Room> list = roomBO.getAllRoom();
             for (Room room : list) {

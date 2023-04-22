@@ -33,6 +33,7 @@ public class SignUpFormController {
     @FXML
     private JFXPasswordField txtConfirmPassword;
 
+    private final UserBO userBO = new UserBOImpl();
 
     public void registerOnAction(ActionEvent actionEvent) {
         String userName = txtUserName.getText();
@@ -41,7 +42,6 @@ public class SignUpFormController {
 
         User user = new User(userName, password, confirmPassword);
 
-        UserBO userBO = new UserBOImpl();
         try {
             boolean saveUser = userBO.saveUser(user);
             if (saveUser) {

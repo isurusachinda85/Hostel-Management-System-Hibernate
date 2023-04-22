@@ -118,6 +118,7 @@ public class AddReservationFormController implements Initializable {
     @FXML
     private Label lblTime;
 
+    private final ReservationBO reservationBO = new ReservationBOImpl();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -188,7 +189,6 @@ public class AddReservationFormController implements Initializable {
     public void loadStudentId() {
         ObservableList<String> studentList = FXCollections.observableArrayList();
 
-        ReservationBO reservationBO = new ReservationBOImpl();
         try {
             List<Student> list = reservationBO.getAllStudentId();
             for (Student student : list) {
@@ -204,7 +204,6 @@ public class AddReservationFormController implements Initializable {
     void selectStudentOnAction(ActionEvent event) {
         String id = cmbStudentId.getValue();
 
-        ReservationBO reservationBO = new ReservationBOImpl();
         try {
             Student student = reservationBO.searchStudent(id);
             if (student != null) {
@@ -224,7 +223,6 @@ public class AddReservationFormController implements Initializable {
     public void loadRoomId() {
         ObservableList<String> roomList = FXCollections.observableArrayList();
 
-        ReservationBO reservationBO = new ReservationBOImpl();
         try {
             List<Room> list = reservationBO.getAllRoomId();
             for (Room room : list) {
@@ -240,7 +238,6 @@ public class AddReservationFormController implements Initializable {
     void selectRoomOnAction(ActionEvent event) {
         String id = cmbRoomId.getValue();
 
-        ReservationBO reservationBO = new ReservationBOImpl();
         try {
             Room room = reservationBO.searchRoom(id);
             if (room != null) {

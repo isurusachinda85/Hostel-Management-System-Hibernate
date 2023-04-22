@@ -79,6 +79,7 @@ public class StudentManageFormController implements Initializable {
     @FXML
     private Label lblTime;
 
+    private final StudentBO studentBO = new StudentBOImpl();
 
 
     @Override
@@ -111,7 +112,6 @@ public class StudentManageFormController implements Initializable {
 
         Student student = new Student(id, name, address, contact, dob, gender, registerDate);
 
-        StudentBO studentBO = new StudentBOImpl();
         try {
             boolean saveStudent = studentBO.saveStudent(student);
             if (saveStudent) {
@@ -132,7 +132,6 @@ public class StudentManageFormController implements Initializable {
     void searchOnAction(ActionEvent event) {
         String id = txtId.getText();
 
-        StudentBO studentBO = new StudentBOImpl();
         try {
             Student student = studentBO.searchStudent(id);
             if (student != null) {
@@ -178,7 +177,6 @@ public class StudentManageFormController implements Initializable {
 
         Student student = new Student(id, name, address, contact, dob, gender, registerDate);
 
-        StudentBO studentBO = new StudentBOImpl();
         try {
             boolean updateStudent = studentBO.updateStudent(student);
             if (updateStudent) {
@@ -197,7 +195,6 @@ public class StudentManageFormController implements Initializable {
     void deleteOnAction(ActionEvent event) {
         String id = txtId.getText();
 
-        StudentBO studentBO = new StudentBOImpl();
         try {
             boolean deleteStudent = studentBO.deleteStudent(id);
             if (deleteStudent) {
@@ -217,7 +214,6 @@ public class StudentManageFormController implements Initializable {
 
         studentList.clear();
 
-        StudentBO studentBO = new StudentBOImpl();
         try {
             List<Student> list = studentBO.getAllStudent();
             for (Student student : list) {
