@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import lk.ijse.hostelManagementSystem.dao.UserDAO;
 import lk.ijse.hostelManagementSystem.dao.UserDAOImpl;
 import lk.ijse.hostelManagementSystem.entity.User;
 import lk.ijse.hostelManagementSystem.util.FactoryConfiguration;
@@ -40,7 +41,7 @@ public class SignUpFormController {
 
         User user = new User(userName, password,confirmPassword);
 
-        UserDAOImpl userDAO = new UserDAOImpl();
+        UserDAO userDAO = new UserDAOImpl();
         try {
             boolean saveUser = userDAO.saveUser(user);
             if (saveUser) {

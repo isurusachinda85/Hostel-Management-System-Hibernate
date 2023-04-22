@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import lk.ijse.hostelManagementSystem.dao.UserDAO;
 import lk.ijse.hostelManagementSystem.dao.UserDAOImpl;
 import lk.ijse.hostelManagementSystem.entity.User;
 import lk.ijse.hostelManagementSystem.util.FactoryConfiguration;
@@ -42,7 +43,7 @@ public class ManageUserController {
 
         User user = new User(id, newUserName, newPassword, confirmPassword);
 
-        UserDAOImpl userDAO = new UserDAOImpl();
+        UserDAO userDAO = new UserDAOImpl();
         try {
             boolean updateUser = userDAO.updateUser(user);
             if (updateUser) {
@@ -57,7 +58,7 @@ public class ManageUserController {
     void userOnAction(ActionEvent event){
         int id = Integer.parseInt(txtUserId.getText());
 
-        UserDAOImpl userDAO = new UserDAOImpl();
+        UserDAO userDAO = new UserDAOImpl();
         try {
             User user = userDAO.searchUser(id);
             if (user != null) {
