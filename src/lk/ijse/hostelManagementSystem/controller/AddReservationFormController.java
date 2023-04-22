@@ -15,12 +15,15 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
+import lk.ijse.hostelManagementSystem.bo.ReservationBOImpl;
+import lk.ijse.hostelManagementSystem.bo.StudentBOImpl;
 import lk.ijse.hostelManagementSystem.dao.custom.ReservationDAO;
 import lk.ijse.hostelManagementSystem.dao.custom.RoomDAO;
 import lk.ijse.hostelManagementSystem.dao.custom.StudentDAO;
 import lk.ijse.hostelManagementSystem.dao.custom.impl.ReservationDAOImpl;
 import lk.ijse.hostelManagementSystem.dao.custom.impl.RoomDAOImpl;
 import lk.ijse.hostelManagementSystem.dao.custom.impl.StudentDAOImpl;
+import lk.ijse.hostelManagementSystem.entity.Reserve;
 import lk.ijse.hostelManagementSystem.entity.Room;
 import lk.ijse.hostelManagementSystem.entity.Student;
 
@@ -114,9 +117,6 @@ public class AddReservationFormController implements Initializable {
     @FXML
     private Label lblTime;
 
-    private final ReservationDAO reservationDAO = new ReservationDAOImpl();
-    private final StudentDAO studentDAO = new StudentDAOImpl();
-    private final RoomDAO roomDAO = new RoomDAOImpl();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -187,8 +187,9 @@ public class AddReservationFormController implements Initializable {
     public void loadStudentId() {
         ObservableList<String> studentList = FXCollections.observableArrayList();
 
+        ReservationBOImpl reservationBO = new ReservationBOImpl();
         try {
-            List<Student> list = studentDAO.getAll();
+            List<Student> list = reservationBO.getAllStudentId();
             for (Student student : list) {
                 studentList.add(student.getSid());
                 cmbStudentId.setItems(studentList);
@@ -202,8 +203,9 @@ public class AddReservationFormController implements Initializable {
     void selectStudentOnAction(ActionEvent event) {
         String id = cmbStudentId.getValue();
 
+        ReservationBOImpl reservationBO = new ReservationBOImpl();
         try {
-            Student student = studentDAO.search(id);
+            Student student = reservationBO.searchStudent(id);
             if (student != null) {
                 name.setText(student.getName());
                 address.setText(student.getAddress());
@@ -221,8 +223,9 @@ public class AddReservationFormController implements Initializable {
     public void loadRoomId() {
         ObservableList<String> roomList = FXCollections.observableArrayList();
 
+        ReservationBOImpl reservationBO = new ReservationBOImpl();
         try {
-            List<Room> list = roomDAO.getAll();
+            List<Room> list = reservationBO.getAllRoomId();
             for (Room room : list) {
                 roomList.add(room.getRoomId());
                 cmbRoomId.setItems(roomList);
@@ -236,8 +239,9 @@ public class AddReservationFormController implements Initializable {
     void selectRoomOnAction(ActionEvent event) {
         String id = cmbRoomId.getValue();
 
+        ReservationBOImpl reservationBO = new ReservationBOImpl();
         try {
-            Room room = roomDAO.search(id);
+            Room room = reservationBO.searchRoom(id);
             if (room != null) {
                 type.setText(room.getType());
                 roomQty.setText(String.valueOf(room.getRoomsQty()));
