@@ -3,7 +3,7 @@ package lk.ijse.hostelManagementSystem.dao;
 import java.io.IOException;
 import java.util.List;
 
-public interface CrudDAO<T> {
+public interface CrudDAO<T> extends SuperDAO {
     boolean save(T entity) throws IOException;
 
     T search(String id) throws IOException;
