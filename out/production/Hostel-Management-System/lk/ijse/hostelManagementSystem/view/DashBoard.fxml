@@ -9,7 +9,7 @@
 
 <AnchorPane fx:id="dashBoardContext" prefHeight="676.0" prefWidth="1088.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostelManagementSystem.controller.DashBoardController">
    <children>
-      <VBox prefHeight="682.0" prefWidth="217.0" style="-fx-background-color: #162593;">
+      <VBox prefHeight="690.0" prefWidth="217.0" style="-fx-background-color: #162593;">
          <children>
             <Label alignment="BASELINE_CENTER" prefHeight="99.0" prefWidth="217.0" text="D24 Hostel" textAlignment="CENTER" textFill="WHITE">
                <font>
@@ -74,7 +74,7 @@
             </JFXButton>
          </children>
       </VBox>
-      <AnchorPane fx:id="mainContext" layoutX="229.0" layoutY="6.0" prefHeight="676.0" prefWidth="847.0">
+      <AnchorPane fx:id="mainContext" layoutX="227.0" layoutY="14.0" prefHeight="676.0" prefWidth="847.0">
          <children>
             <Label layoutX="268.0" layoutY="181.0" text="Dash Board">
                <font>
