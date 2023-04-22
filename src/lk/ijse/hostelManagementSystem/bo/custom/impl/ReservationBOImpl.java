@@ -1,6 +1,7 @@
 package lk.ijse.hostelManagementSystem.bo.custom.impl;
 
 import lk.ijse.hostelManagementSystem.bo.custom.ReservationBO;
+import lk.ijse.hostelManagementSystem.dao.DAOFactory;
 import lk.ijse.hostelManagementSystem.dao.custom.ReservationDAO;
 import lk.ijse.hostelManagementSystem.dao.custom.RoomDAO;
 import lk.ijse.hostelManagementSystem.dao.custom.StudentDAO;
@@ -15,9 +16,9 @@ import java.io.IOException;
 import java.util.List;
 
 public class ReservationBOImpl implements ReservationBO {
-    private final ReservationDAO reservationDAO = new ReservationDAOImpl();
-    private final StudentDAO studentDAO = new StudentDAOImpl();
-    private final RoomDAO roomDAO = new RoomDAOImpl();
+    private final ReservationDAO reservationDAO = (ReservationDAO) DAOFactory.getDaoFactory().getDao(DAOFactory.DAOType.RESERVE);
+    private final StudentDAO studentDAO = (StudentDAO) DAOFactory.getDaoFactory().getDao(DAOFactory.DAOType.STUDENT);
+    private final RoomDAO roomDAO = (RoomDAO) DAOFactory.getDaoFactory().getDao(DAOFactory.DAOType.ROOM);
 
     @Override
     public boolean saveReservation(Reserve dto) throws IOException {
