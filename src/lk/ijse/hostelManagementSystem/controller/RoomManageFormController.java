@@ -17,6 +17,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Duration;
+import lk.ijse.hostelManagementSystem.dao.RoomDAO;
 import lk.ijse.hostelManagementSystem.dao.RoomDAOImpl;
 import lk.ijse.hostelManagementSystem.entity.Room;
 import lk.ijse.hostelManagementSystem.util.FactoryConfiguration;
@@ -104,7 +105,7 @@ public class RoomManageFormController implements Initializable {
 
         Room room = new Room(id, type, rent, roomQty, availabelQty, addDate);
 
-        RoomDAOImpl roomDAO = new RoomDAOImpl();
+        RoomDAO roomDAO = new RoomDAOImpl();
         try {
             boolean saveRoom = roomDAO.saveRoom(room);
             if (saveRoom) {
@@ -123,7 +124,7 @@ public class RoomManageFormController implements Initializable {
     void searchOnAction(ActionEvent event) {
         String id = txtId.getText();
 
-        RoomDAOImpl roomDAO = new RoomDAOImpl();
+        RoomDAO roomDAO = new RoomDAOImpl();
         try {
             Room room = roomDAO.searchRoom(id);
             if (room != null) {
@@ -152,7 +153,7 @@ public class RoomManageFormController implements Initializable {
 
         Room room = new Room(id, type, rent, roomQty, availabelQty, addDate);
 
-        RoomDAOImpl roomDAO = new RoomDAOImpl();
+        RoomDAO roomDAO = new RoomDAOImpl();
         try {
             boolean updateRoom = roomDAO.updateRoom(room);
             if (updateRoom) {
@@ -169,7 +170,7 @@ public class RoomManageFormController implements Initializable {
     void deleteOnAction(ActionEvent event) {
         String id = txtId.getText();
 
-        RoomDAOImpl roomDAO = new RoomDAOImpl();
+        RoomDAO roomDAO = new RoomDAOImpl();
         try {
             boolean deleteRoom = roomDAO.deleteRoom(id);
             if (deleteRoom) {
@@ -188,7 +189,7 @@ public class RoomManageFormController implements Initializable {
 
         roomList.clear();
 
-        RoomDAOImpl roomDAO = new RoomDAOImpl();
+        RoomDAO roomDAO = new RoomDAOImpl();
         try {
             List<Room> list = roomDAO.getAllRoom();
             for (Room room : list) {
