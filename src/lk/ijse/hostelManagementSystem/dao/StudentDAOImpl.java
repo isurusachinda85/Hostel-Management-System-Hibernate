@@ -10,9 +10,9 @@ import java.io.IOException;
 
 import java.util.List;
 
-public class StudentDAOImpl implements StudentDAO {
+public class StudentDAOImpl implements CrudDAO<Student> {
     @Override
-    public boolean saveStudent(Student student) throws IOException {
+    public boolean save(Student student) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         session.save(student);
@@ -22,7 +22,7 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     @Override
-    public Student searchStudent(String id) throws IOException {
+    public Student search(String id) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         Student student = session.get(Student.class, id);
@@ -32,7 +32,7 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     @Override
-    public boolean updateStudent(Student student) throws IOException {
+    public boolean update(Student student) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         session.update(student);
@@ -42,7 +42,7 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     @Override
-    public boolean deleteStudent(String id) throws IOException {
+    public boolean delete(String id) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         Student student = session.load(Student.class, id);
@@ -53,7 +53,7 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     @Override
-    public List<Student> getAllStudent() throws IOException {
+    public List<Student> getAll() throws IOException {
         String hql = "FROM Student";
 
         Session session = FactoryConfiguration.getInstance().getSession();

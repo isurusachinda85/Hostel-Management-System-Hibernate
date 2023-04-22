@@ -17,6 +17,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Duration;
+import lk.ijse.hostelManagementSystem.dao.CrudDAO;
 import lk.ijse.hostelManagementSystem.dao.RoomDAO;
 import lk.ijse.hostelManagementSystem.dao.RoomDAOImpl;
 import lk.ijse.hostelManagementSystem.entity.Room;
@@ -77,7 +78,7 @@ public class RoomManageFormController implements Initializable {
     @FXML
     private Label lblTime;
 
-    private final RoomDAO roomDAO = new RoomDAOImpl();
+    private final CrudDAO roomDAO = new RoomDAOImpl();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -108,7 +109,7 @@ public class RoomManageFormController implements Initializable {
         Room room = new Room(id, type, rent, roomQty, availabelQty, addDate);
 
         try {
-            boolean saveRoom = roomDAO.saveRoom(room);
+            boolean saveRoom = roomDAO.save(room);
             if (saveRoom) {
                 new Alert(Alert.AlertType.INFORMATION, "Save Room !").show();
             } else {
@@ -126,7 +127,7 @@ public class RoomManageFormController implements Initializable {
         String id = txtId.getText();
 
         try {
-            Room room = roomDAO.searchRoom(id);
+            Room room = (Room) roomDAO.search(id);
             if (room != null) {
                 txtMonthlyRent.setText(String.valueOf(room.getMonthlyRent()));
                 cmbRoomType.setValue(room.getType());
@@ -154,7 +155,7 @@ public class RoomManageFormController implements Initializable {
         Room room = new Room(id, type, rent, roomQty, availabelQty, addDate);
 
         try {
-            boolean updateRoom = roomDAO.updateRoom(room);
+            boolean updateRoom = roomDAO.update(room);
             if (updateRoom) {
                 new Alert(Alert.AlertType.INFORMATION, "Updated !").show();
             }
@@ -170,7 +171,7 @@ public class RoomManageFormController implements Initializable {
         String id = txtId.getText();
 
         try {
-            boolean deleteRoom = roomDAO.deleteRoom(id);
+            boolean deleteRoom = roomDAO.delete(id);
             if (deleteRoom) {
                 new Alert(Alert.AlertType.INFORMATION, "Delete Room !").show();
             }
@@ -188,7 +189,7 @@ public class RoomManageFormController implements Initializable {
         roomList.clear();
 
         try {
-            List<Room> list = roomDAO.getAllRoom();
+            List<Room> list = roomDAO.getAll();
             for (Room room : list) {
                 roomList.add(room);
             }

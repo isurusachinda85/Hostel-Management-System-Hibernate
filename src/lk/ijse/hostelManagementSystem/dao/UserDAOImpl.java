@@ -6,10 +6,11 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.io.IOException;
+import java.util.List;
 
-public class UserDAOImpl implements UserDAO {
+public class UserDAOImpl implements CrudDAO<User> {
     @Override
-    public boolean saveUser(User user) throws IOException {
+    public boolean save(User user) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         session.save(user);
@@ -19,22 +20,38 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public User searchUser(int id) throws IOException {
+    public User search(String id) throws IOException {
+        return null;
+    }
+
+
+    /*@Override
+    public User search(int id) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         User user = session.get(User.class, id);
         transaction.commit();
         session.close();
         return user;
-    }
+    }*/
 
     @Override
-    public boolean updateUser(User user) throws IOException {
+    public boolean update(User user) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         session.update(user);
         transaction.commit();
         session.close();
         return true;
+    }
+
+    @Override
+    public boolean delete(String id) throws IOException {
+        return false;
+    }
+
+    @Override
+    public List<User> getAll() throws IOException {
+        return null;
     }
 }

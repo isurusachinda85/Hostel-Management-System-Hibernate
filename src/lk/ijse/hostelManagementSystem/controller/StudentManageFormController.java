@@ -17,6 +17,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Duration;
+import lk.ijse.hostelManagementSystem.dao.CrudDAO;
 import lk.ijse.hostelManagementSystem.dao.StudentDAO;
 import lk.ijse.hostelManagementSystem.dao.StudentDAOImpl;
 import lk.ijse.hostelManagementSystem.entity.Student;
@@ -83,7 +84,7 @@ public class StudentManageFormController implements Initializable {
     @FXML
     private Label lblTime;
 
-    private final StudentDAO studentDAO = new StudentDAOImpl();
+    private final CrudDAO crudDAO = new StudentDAOImpl();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -116,7 +117,7 @@ public class StudentManageFormController implements Initializable {
         Student student = new Student(id, name, address, contact, dob, gender, registerDate);
 
         try {
-            boolean saveStudent = studentDAO.saveStudent(student);
+            boolean saveStudent = crudDAO.save(student);
             if (saveStudent) {
                 new Alert(Alert.AlertType.INFORMATION, "Save Student !").show();
             } else {
@@ -136,7 +137,7 @@ public class StudentManageFormController implements Initializable {
         String id = txtId.getText();
 
         try {
-            Student student = studentDAO.searchStudent(id);
+            Student student = (Student) crudDAO.search(id);
             if (student != null) {
                 txtName.setText(student.getName());
                 txtAddress.setText(student.getAddress());
@@ -181,7 +182,7 @@ public class StudentManageFormController implements Initializable {
         Student student = new Student(id, name, address, contact, dob, gender, registerDate);
 
         try {
-            boolean updateStudent = studentDAO.updateStudent(student);
+            boolean updateStudent = crudDAO.update(student);
             if (updateStudent) {
                 new Alert(Alert.AlertType.INFORMATION, "Updated !").show();
             }
@@ -199,7 +200,7 @@ public class StudentManageFormController implements Initializable {
         String id = txtId.getText();
 
         try {
-            boolean deleteStudent = studentDAO.deleteStudent(id);
+            boolean deleteStudent = crudDAO.delete(id);
             if (deleteStudent) {
                 new Alert(Alert.AlertType.INFORMATION, "Delete Student !").show();
             } else {
@@ -218,7 +219,7 @@ public class StudentManageFormController implements Initializable {
         studentList.clear();
 
         try {
-            List<Student> list = studentDAO.getAllStudent();
+            List<Student> list = crudDAO.getAll();
             for (Student student : list) {
                 studentList.add(student);
             }

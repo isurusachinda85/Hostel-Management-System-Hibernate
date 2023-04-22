@@ -116,9 +116,9 @@ public class AddReservationFormController implements Initializable {
     @FXML
     private Label lblTime;
 
-    private final ReservationDAO reservationDAO = new ReservationDAOImpl();
-    private final StudentDAO studentDAO = new StudentDAOImpl();
-    private final RoomDAO roomDAO = new RoomDAOImpl();
+    private final CrudDAO reservationDAO = new ReservationDAOImpl();
+    private final CrudDAO studentDAO = new StudentDAOImpl();
+    private final CrudDAO roomDAO = new RoomDAOImpl();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -146,7 +146,7 @@ public class AddReservationFormController implements Initializable {
         /*Reserve reserve = new Reserve(reserveId,reserveDate,studentName,monthlyRent,paidKeyMoney,dueRent,paymentThisMonth,roomId,studentId);
 
         try {
-            boolean saveReseve = reservationDAO.saveReseve(reserve);
+            boolean saveReseve = reservationDAO.save(reserve);
             if (saveReseve) {
                 System.out.println("Save");
             }
@@ -190,7 +190,7 @@ public class AddReservationFormController implements Initializable {
         ObservableList<String> studentList = FXCollections.observableArrayList();
 
         try {
-            List<Student> list = studentDAO.getAllStudent();
+            List<Student> list = studentDAO.getAll();
             for (Student student : list) {
                 studentList.add(student.getSid());
                 cmbStudentId.setItems(studentList);
@@ -205,7 +205,7 @@ public class AddReservationFormController implements Initializable {
         String id = cmbStudentId.getValue();
 
         try {
-            Student student = studentDAO.searchStudent(id);
+            Student student = (Student) studentDAO.search(id);
             if (student != null) {
                 name.setText(student.getName());
                 address.setText(student.getAddress());
@@ -224,7 +224,7 @@ public class AddReservationFormController implements Initializable {
         ObservableList<String> roomList = FXCollections.observableArrayList();
 
         try {
-            List<Room> list = roomDAO.getAllRoom();
+            List<Room> list = roomDAO.getAll();
             for (Room room : list) {
                 roomList.add(room.getRoomId());
                 cmbRoomId.setItems(roomList);
@@ -239,7 +239,7 @@ public class AddReservationFormController implements Initializable {
         String id = cmbRoomId.getValue();
 
         try {
-            Room room = roomDAO.searchRoom(id);
+            Room room = (Room) roomDAO.search(id);
             if (room != null) {
                 type.setText(room.getType());
                 roomQty.setText(String.valueOf(room.getRoomsQty()));

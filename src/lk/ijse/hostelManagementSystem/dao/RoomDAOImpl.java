@@ -10,9 +10,9 @@ import org.hibernate.query.Query;
 import java.io.IOException;
 import java.util.List;
 
-public class RoomDAOImpl implements RoomDAO {
+public class RoomDAOImpl implements CrudDAO<Room> {
     @Override
-    public boolean saveRoom(Room room) throws IOException {
+    public boolean save(Room room) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         session.save(room);
@@ -22,7 +22,7 @@ public class RoomDAOImpl implements RoomDAO {
     }
 
     @Override
-    public Room searchRoom(String id) throws IOException {
+    public Room search(String id) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         Room room = session.get(Room.class, id);
@@ -32,7 +32,7 @@ public class RoomDAOImpl implements RoomDAO {
     }
 
     @Override
-    public boolean updateRoom(Room room) throws IOException {
+    public boolean update(Room room) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         session.update(room);
@@ -42,7 +42,7 @@ public class RoomDAOImpl implements RoomDAO {
     }
 
     @Override
-    public boolean deleteRoom(String id) throws IOException {
+    public boolean delete(String id) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         Room room = session.load(Room.class, id);
@@ -53,7 +53,7 @@ public class RoomDAOImpl implements RoomDAO {
     }
 
     @Override
-    public List<Room> getAllRoom() throws IOException {
+    public List<Room> getAll() throws IOException {
         String hql = "FROM Room";
 
         Session session = FactoryConfiguration.getInstance().getSession();
