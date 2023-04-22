@@ -4,6 +4,8 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import lk.ijse.hostelManagementSystem.dao.UserDAOImpl;
 import lk.ijse.hostelManagementSystem.entity.User;
 import lk.ijse.hostelManagementSystem.util.FactoryConfiguration;
 import org.hibernate.Session;
@@ -32,7 +34,7 @@ public class ManageUserController {
     private JFXTextField txtUserId;
 
     @FXML
-    void updateOnAction(ActionEvent event) throws IOException {
+    void updateOnAction(ActionEvent event){
         int id = Integer.parseInt(txtUserId.getText());
         String newUserName = txtNewUserName.getText();
         String newPassword = txtNewPassword.getText();
@@ -40,26 +42,32 @@ public class ManageUserController {
 
         User user = new User(id, newUserName, newPassword, confirmPassword);
 
-        Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
-        session.update(user);
-        transaction.commit();
-        session.close();
+        UserDAOImpl userDAO = new UserDAOImpl();
+        try {
+            boolean updateUser = userDAO.updateUser(user);
+            if (updateUser) {
+                new Alert(Alert.AlertType.INFORMATION, "Updated !").show();
+            }
+        } catch (IOException e) {
+            System.out.println(e);
+        }
     }
 
     @FXML
-    void userOnAction(ActionEvent event) throws IOException {
+    void userOnAction(ActionEvent event){
         int id = Integer.parseInt(txtUserId.getText());
 
-        Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
-        User user = session.get(User.class, id);
-        if (user != null) {
-            txtCurrentUserName.setText(user.getUserName());
-            txtCurrentPassword.setText(user.getPassword());
+        UserDAOImpl userDAO = new UserDAOImpl();
+        try {
+            User user = userDAO.searchUser(id);
+            if (user != null) {
+                txtCurrentUserName.setText(user.getUserName());
+                txtCurrentPassword.setText(user.getPassword());
+            }
+
+        } catch (IOException e) {
+            System.out.println(e);
         }
-        transaction.commit();
-        session.close();
     }
 
     @FXML
