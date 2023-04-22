@@ -17,6 +17,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Duration;
+import lk.ijse.hostelManagementSystem.bo.StudentBOImpl;
 import lk.ijse.hostelManagementSystem.dao.custom.StudentDAO;
 import lk.ijse.hostelManagementSystem.dao.custom.impl.StudentDAOImpl;
 import lk.ijse.hostelManagementSystem.entity.Student;
@@ -77,7 +78,7 @@ public class StudentManageFormController implements Initializable {
     @FXML
     private Label lblTime;
 
-    private final StudentDAO studentDAO = new StudentDAOImpl();
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -109,8 +110,9 @@ public class StudentManageFormController implements Initializable {
 
         Student student = new Student(id, name, address, contact, dob, gender, registerDate);
 
+        StudentBOImpl studentBO = new StudentBOImpl();
         try {
-            boolean saveStudent = studentDAO.save(student);
+            boolean saveStudent = studentBO.saveStudent(student);
             if (saveStudent) {
                 new Alert(Alert.AlertType.INFORMATION, "Save Student !").show();
             } else {
@@ -129,8 +131,9 @@ public class StudentManageFormController implements Initializable {
     void searchOnAction(ActionEvent event) {
         String id = txtId.getText();
 
+        StudentBOImpl studentBO = new StudentBOImpl();
         try {
-            Student student = studentDAO.search(id);
+            Student student = studentBO.searchStudent(id);
             if (student != null) {
                 txtName.setText(student.getName());
                 txtAddress.setText(student.getAddress());
@@ -174,8 +177,9 @@ public class StudentManageFormController implements Initializable {
 
         Student student = new Student(id, name, address, contact, dob, gender, registerDate);
 
+        StudentBOImpl studentBO = new StudentBOImpl();
         try {
-            boolean updateStudent = studentDAO.update(student);
+            boolean updateStudent = studentBO.updateStudent(student);
             if (updateStudent) {
                 new Alert(Alert.AlertType.INFORMATION, "Updated !").show();
             }
@@ -192,8 +196,9 @@ public class StudentManageFormController implements Initializable {
     void deleteOnAction(ActionEvent event) {
         String id = txtId.getText();
 
+        StudentBOImpl studentBO = new StudentBOImpl();
         try {
-            boolean deleteStudent = studentDAO.delete(id);
+            boolean deleteStudent = studentBO.deleteStudent(id);
             if (deleteStudent) {
                 new Alert(Alert.AlertType.INFORMATION, "Delete Student !").show();
             } else {
@@ -211,8 +216,9 @@ public class StudentManageFormController implements Initializable {
 
         studentList.clear();
 
+        StudentBOImpl studentBO = new StudentBOImpl();
         try {
-            List<Student> list = studentDAO.getAll();
+            List<Student> list = studentBO.getAllStudent();
             for (Student student : list) {
                 studentList.add(student);
             }
