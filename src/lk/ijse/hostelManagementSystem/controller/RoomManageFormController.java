@@ -18,7 +18,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Duration;
 import lk.ijse.hostelManagementSystem.dao.custom.RoomDAO;
-import lk.ijse.hostelManagementSystem.dao.RoomDAOImpl;
+import lk.ijse.hostelManagementSystem.dao.custom.impl.RoomDAOImpl;
 import lk.ijse.hostelManagementSystem.entity.Room;
 
 import java.io.IOException;

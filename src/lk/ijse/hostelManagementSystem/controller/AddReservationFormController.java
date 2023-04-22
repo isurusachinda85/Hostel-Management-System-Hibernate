@@ -15,10 +15,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
-import lk.ijse.hostelManagementSystem.dao.*;
 import lk.ijse.hostelManagementSystem.dao.custom.ReservationDAO;
 import lk.ijse.hostelManagementSystem.dao.custom.RoomDAO;
 import lk.ijse.hostelManagementSystem.dao.custom.StudentDAO;
+import lk.ijse.hostelManagementSystem.dao.custom.impl.ReservationDAOImpl;
+import lk.ijse.hostelManagementSystem.dao.custom.impl.RoomDAOImpl;
+import lk.ijse.hostelManagementSystem.dao.custom.impl.StudentDAOImpl;
 import lk.ijse.hostelManagementSystem.entity.Room;
 import lk.ijse.hostelManagementSystem.entity.Student;
 

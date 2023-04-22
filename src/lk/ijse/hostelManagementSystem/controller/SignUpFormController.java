@@ -13,7 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import lk.ijse.hostelManagementSystem.dao.custom.UserDAO;
-import lk.ijse.hostelManagementSystem.dao.UserDAOImpl;
+import lk.ijse.hostelManagementSystem.dao.custom.impl.UserDAOImpl;
 import lk.ijse.hostelManagementSystem.entity.User;
 import org.controlsfx.control.Notifications;
 

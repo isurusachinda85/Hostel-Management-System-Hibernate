@@ -6,7 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import lk.ijse.hostelManagementSystem.dao.custom.UserDAO;
-import lk.ijse.hostelManagementSystem.dao.UserDAOImpl;
+import lk.ijse.hostelManagementSystem.dao.custom.impl.UserDAOImpl;
 import lk.ijse.hostelManagementSystem.entity.User;
 
 import java.io.IOException;

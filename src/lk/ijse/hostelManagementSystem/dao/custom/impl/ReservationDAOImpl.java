@@ -1,4 +1,4 @@
-package lk.ijse.hostelManagementSystem.dao;
+package lk.ijse.hostelManagementSystem.dao.custom.impl;
 
 import lk.ijse.hostelManagementSystem.dao.custom.ReservationDAO;
 import lk.ijse.hostelManagementSystem.entity.Reserve;
