@@ -74,7 +74,7 @@
             </JFXButton>
          </children>
       </VBox>
-      <AnchorPane fx:id="mainContext" layoutX="229.0" layoutY="6.0" prefHeight="676.0" prefWidth="847.0">
+      <AnchorPane fx:id="mainContext" layoutX="227.0" layoutY="14.0" prefHeight="676.0" prefWidth="847.0">
          <children>
             <Label layoutX="268.0" layoutY="181.0" text="Dash Board">
                <font>
