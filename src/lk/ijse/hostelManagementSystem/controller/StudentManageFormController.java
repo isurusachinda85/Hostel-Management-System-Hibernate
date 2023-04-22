@@ -17,6 +17,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Duration;
+import lk.ijse.hostelManagementSystem.dao.StudentDAO;
 import lk.ijse.hostelManagementSystem.dao.StudentDAOImpl;
 import lk.ijse.hostelManagementSystem.entity.Student;
 import lk.ijse.hostelManagementSystem.util.FactoryConfiguration;
@@ -112,7 +113,7 @@ public class StudentManageFormController implements Initializable {
 
         Student student = new Student(id, name, address, contact, dob, gender, registerDate);
 
-        StudentDAOImpl studentDAO = new StudentDAOImpl();
+        StudentDAO studentDAO = new StudentDAOImpl();
         try {
             boolean saveStudent = studentDAO.saveStudent(student);
             if (saveStudent) {
@@ -133,7 +134,7 @@ public class StudentManageFormController implements Initializable {
     void searchOnAction(ActionEvent event){
         String id = txtId.getText();
 
-        StudentDAOImpl studentDAO = new StudentDAOImpl();
+        StudentDAO studentDAO = new StudentDAOImpl();
         try {
             Student student = studentDAO.searchStudent(id);
             if (student != null) {
@@ -179,7 +180,7 @@ public class StudentManageFormController implements Initializable {
 
         Student student = new Student(id, name, address, contact, dob, gender, registerDate);
 
-        StudentDAOImpl studentDAO = new StudentDAOImpl();
+        StudentDAO studentDAO = new StudentDAOImpl();
         try {
             boolean updateStudent = studentDAO.updateStudent(student);
             if (updateStudent) {
@@ -198,7 +199,7 @@ public class StudentManageFormController implements Initializable {
     void deleteOnAction(ActionEvent event){
         String id = txtId.getText();
 
-        StudentDAOImpl studentDAO = new StudentDAOImpl();
+        StudentDAO studentDAO = new StudentDAOImpl();
         try {
             boolean deleteStudent = studentDAO.deleteStudent(id);
             if (deleteStudent) {
@@ -218,7 +219,7 @@ public class StudentManageFormController implements Initializable {
 
         studentList.clear();
 
-        StudentDAOImpl studentDAO = new StudentDAOImpl();
+        StudentDAO studentDAO = new StudentDAOImpl();
         try {
             List<Student> list = studentDAO.getAllStudent();
             for (Student student : list) {
