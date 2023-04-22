@@ -10,7 +10,8 @@ import java.io.IOException;
 
 import java.util.List;
 
-public class StudentDAOImpl {
+public class StudentDAOImpl implements StudentDAO {
+    @Override
     public boolean saveStudent(Student student) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
@@ -19,6 +20,7 @@ public class StudentDAOImpl {
         session.close();
         return true;
     }
+    @Override
     public Student searchStudent(String id) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
@@ -27,6 +29,7 @@ public class StudentDAOImpl {
         session.close();
         return student;
     }
+    @Override
     public boolean updateStudent(Student student) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
@@ -35,6 +38,7 @@ public class StudentDAOImpl {
         session.close();
         return true;
     }
+    @Override
     public boolean deleteStudent(String id) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
@@ -44,6 +48,7 @@ public class StudentDAOImpl {
         session.close();
         return true;
     }
+    @Override
     public List<Student> getAllStudent() throws IOException {
         String hql = "FROM Student";
 

@@ -10,7 +10,8 @@ import org.hibernate.query.Query;
 import java.io.IOException;
 import java.util.List;
 
-public class RoomDAOImpl {
+public class RoomDAOImpl implements RoomDAO {
+    @Override
     public boolean saveRoom(Room room) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
@@ -19,6 +20,7 @@ public class RoomDAOImpl {
         session.close();
         return true;
     }
+    @Override
     public Room searchRoom(String id) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
@@ -27,6 +29,7 @@ public class RoomDAOImpl {
         session.close();
         return room;
     }
+    @Override
     public boolean updateRoom(Room room) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
@@ -35,6 +38,7 @@ public class RoomDAOImpl {
         session.close();
         return true;
     }
+    @Override
     public boolean deleteRoom(String id) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
@@ -44,6 +48,7 @@ public class RoomDAOImpl {
         session.close();
         return true;
     }
+    @Override
     public List<Room> getAllRoom() throws IOException {
         String hql = "FROM Room";
 
