@@ -20,6 +20,7 @@ public class RoomDAOImpl implements RoomDAO {
         session.close();
         return true;
     }
+
     @Override
     public Room searchRoom(String id) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
@@ -29,6 +30,7 @@ public class RoomDAOImpl implements RoomDAO {
         session.close();
         return room;
     }
+
     @Override
     public boolean updateRoom(Room room) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
@@ -38,6 +40,7 @@ public class RoomDAOImpl implements RoomDAO {
         session.close();
         return true;
     }
+
     @Override
     public boolean deleteRoom(String id) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
@@ -48,6 +51,7 @@ public class RoomDAOImpl implements RoomDAO {
         session.close();
         return true;
     }
+
     @Override
     public List<Room> getAllRoom() throws IOException {
         String hql = "FROM Room";

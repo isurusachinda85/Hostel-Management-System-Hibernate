@@ -20,6 +20,7 @@ public class StudentDAOImpl implements StudentDAO {
         session.close();
         return true;
     }
+
     @Override
     public Student searchStudent(String id) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
@@ -29,6 +30,7 @@ public class StudentDAOImpl implements StudentDAO {
         session.close();
         return student;
     }
+
     @Override
     public boolean updateStudent(Student student) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
@@ -38,6 +40,7 @@ public class StudentDAOImpl implements StudentDAO {
         session.close();
         return true;
     }
+
     @Override
     public boolean deleteStudent(String id) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
@@ -48,6 +51,7 @@ public class StudentDAOImpl implements StudentDAO {
         session.close();
         return true;
     }
+
     @Override
     public List<Student> getAllStudent() throws IOException {
         String hql = "FROM Student";

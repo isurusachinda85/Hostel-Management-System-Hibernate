@@ -7,7 +7,8 @@ import org.hibernate.Transaction;
 
 import java.io.IOException;
 
-public class UserDAOImpl {
+public class UserDAOImpl implements UserDAO {
+    @Override
     public boolean saveUser(User user) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
@@ -16,6 +17,8 @@ public class UserDAOImpl {
         session.close();
         return true;
     }
+
+    @Override
     public User searchUser(int id) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
@@ -24,6 +27,8 @@ public class UserDAOImpl {
         session.close();
         return user;
     }
+
+    @Override
     public boolean updateUser(User user) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
