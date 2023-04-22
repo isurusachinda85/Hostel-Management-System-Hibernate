@@ -104,7 +104,7 @@ public class StudentManageFormController implements Initializable {
     }
 
     @FXML
-    void saveOnAction(ActionEvent event){
+    void saveOnAction(ActionEvent event) {
         String id = txtId.getText();
         String name = txtName.getText();
         String address = txtAddress.getText();
@@ -119,7 +119,7 @@ public class StudentManageFormController implements Initializable {
             boolean saveStudent = studentDAO.saveStudent(student);
             if (saveStudent) {
                 new Alert(Alert.AlertType.INFORMATION, "Save Student !").show();
-            }else {
+            } else {
                 new Alert(Alert.AlertType.WARNING, "Not Save Student !").show();
             }
             getAllStudent();
@@ -132,7 +132,7 @@ public class StudentManageFormController implements Initializable {
     }
 
     @FXML
-    void searchOnAction(ActionEvent event){
+    void searchOnAction(ActionEvent event) {
         String id = txtId.getText();
 
         try {
@@ -169,7 +169,7 @@ public class StudentManageFormController implements Initializable {
     }
 
     @FXML
-    void updateOnAction(ActionEvent event){
+    void updateOnAction(ActionEvent event) {
         String id = txtId.getText();
         String name = txtName.getText();
         String address = txtAddress.getText();
@@ -195,14 +195,14 @@ public class StudentManageFormController implements Initializable {
 
 
     @FXML
-    void deleteOnAction(ActionEvent event){
+    void deleteOnAction(ActionEvent event) {
         String id = txtId.getText();
 
         try {
             boolean deleteStudent = studentDAO.deleteStudent(id);
             if (deleteStudent) {
                 new Alert(Alert.AlertType.INFORMATION, "Delete Student !").show();
-            }else {
+            } else {
                 new Alert(Alert.AlertType.WARNING, "Not Found Student !").show();
             }
             getAllStudent();
@@ -212,7 +212,7 @@ public class StudentManageFormController implements Initializable {
         clearTextOnAction(event);
     }
 
-    public void getAllStudent(){
+    public void getAllStudent() {
         ObservableList<Student> studentList = FXCollections.observableArrayList();
 
         studentList.clear();

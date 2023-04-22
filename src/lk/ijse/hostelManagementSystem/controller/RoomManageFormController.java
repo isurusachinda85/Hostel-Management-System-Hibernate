@@ -74,6 +74,7 @@ public class RoomManageFormController implements Initializable {
     @FXML
     private Label lblDate;
 
+    private RoomDAO roomDAO = new RoomDAOImpl();
     @FXML
     private Label lblTime;
 
@@ -105,7 +106,6 @@ public class RoomManageFormController implements Initializable {
 
         Room room = new Room(id, type, rent, roomQty, availabelQty, addDate);
 
-        RoomDAO roomDAO = new RoomDAOImpl();
         try {
             boolean saveRoom = roomDAO.saveRoom(room);
             if (saveRoom) {
@@ -124,7 +124,6 @@ public class RoomManageFormController implements Initializable {
     void searchOnAction(ActionEvent event) {
         String id = txtId.getText();
 
-        RoomDAO roomDAO = new RoomDAOImpl();
         try {
             Room room = roomDAO.searchRoom(id);
             if (room != null) {
@@ -153,7 +152,6 @@ public class RoomManageFormController implements Initializable {
 
         Room room = new Room(id, type, rent, roomQty, availabelQty, addDate);
 
-        RoomDAO roomDAO = new RoomDAOImpl();
         try {
             boolean updateRoom = roomDAO.updateRoom(room);
             if (updateRoom) {
@@ -170,7 +168,6 @@ public class RoomManageFormController implements Initializable {
     void deleteOnAction(ActionEvent event) {
         String id = txtId.getText();
 
-        RoomDAO roomDAO = new RoomDAOImpl();
         try {
             boolean deleteRoom = roomDAO.deleteRoom(id);
             if (deleteRoom) {
@@ -189,7 +186,6 @@ public class RoomManageFormController implements Initializable {
 
         roomList.clear();
 
-        RoomDAO roomDAO = new RoomDAOImpl();
         try {
             List<Room> list = roomDAO.getAllRoom();
             for (Room room : list) {

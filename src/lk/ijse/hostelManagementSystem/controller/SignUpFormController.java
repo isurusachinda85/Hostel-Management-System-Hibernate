@@ -34,6 +34,8 @@ public class SignUpFormController {
     @FXML
     private JFXPasswordField txtConfirmPassword;
 
+    private UserDAO userDAO = new UserDAOImpl();
+
     public void registerOnAction(ActionEvent actionEvent){
         String userName = txtUserName.getText();
         String password = txtPassword.getText();
@@ -41,7 +43,6 @@ public class SignUpFormController {
 
         User user = new User(userName, password,confirmPassword);
 
-        UserDAO userDAO = new UserDAOImpl();
         try {
             boolean saveUser = userDAO.saveUser(user);
             if (saveUser) {

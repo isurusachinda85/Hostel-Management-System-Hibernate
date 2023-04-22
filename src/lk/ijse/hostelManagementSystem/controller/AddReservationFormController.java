@@ -116,6 +116,10 @@ public class AddReservationFormController implements Initializable {
     @FXML
     private Label lblTime;
 
+    private ReservationDAO reservationDAO = new ReservationDAOImpl();
+    private StudentDAO studentDAO = new StudentDAOImpl();
+    private RoomDAO roomDAO = new RoomDAOImpl();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadTimeAndDate();
@@ -140,7 +144,7 @@ public class AddReservationFormController implements Initializable {
 
 
         /*Reserve reserve = new Reserve(reserveId,reserveDate,studentName,monthlyRent,paidKeyMoney,dueRent,paymentThisMonth,roomId,studentId);
-        ReservationDAO reservationDAO = new ReservationDAOImpl();
+
         try {
             boolean saveReseve = reservationDAO.saveReseve(reserve);
             if (saveReseve) {
@@ -185,7 +189,6 @@ public class AddReservationFormController implements Initializable {
     public void loadStudentId(){
         ObservableList<String> studentList = FXCollections.observableArrayList();
 
-        StudentDAO studentDAO = new StudentDAOImpl();
         try {
             List<Student> list = studentDAO.getAllStudent();
             for (Student student : list) {
@@ -201,7 +204,6 @@ public class AddReservationFormController implements Initializable {
     void selectStudentOnAction(ActionEvent event){
         String id = cmbStudentId.getValue();
 
-        StudentDAO studentDAO = new StudentDAOImpl();
         try {
             Student student = studentDAO.searchStudent(id);
             if (student != null) {
@@ -221,7 +223,6 @@ public class AddReservationFormController implements Initializable {
     public void loadRoomId(){
         ObservableList<String> roomList = FXCollections.observableArrayList();
 
-        RoomDAO roomDAO = new RoomDAOImpl();
         try {
             List<Room> list = roomDAO.getAllRoom();
             for (Room room : list) {
@@ -237,7 +238,6 @@ public class AddReservationFormController implements Initializable {
     void selectRoomOnAction(ActionEvent event){
         String id = cmbRoomId.getValue();
 
-        RoomDAO roomDAO = new RoomDAOImpl();
         try {
             Room room = roomDAO.searchRoom(id);
             if (room != null) {

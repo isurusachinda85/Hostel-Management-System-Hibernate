@@ -34,6 +34,8 @@ public class ManageUserController {
     @FXML
     private JFXTextField txtUserId;
 
+    private UserDAO userDAO = new UserDAOImpl();
+
     @FXML
     void updateOnAction(ActionEvent event){
         int id = Integer.parseInt(txtUserId.getText());
@@ -43,7 +45,6 @@ public class ManageUserController {
 
         User user = new User(id, newUserName, newPassword, confirmPassword);
 
-        UserDAO userDAO = new UserDAOImpl();
         try {
             boolean updateUser = userDAO.updateUser(user);
             if (updateUser) {
@@ -58,7 +59,6 @@ public class ManageUserController {
     void userOnAction(ActionEvent event){
         int id = Integer.parseInt(txtUserId.getText());
 
-        UserDAO userDAO = new UserDAOImpl();
         try {
             User user = userDAO.searchUser(id);
             if (user != null) {
