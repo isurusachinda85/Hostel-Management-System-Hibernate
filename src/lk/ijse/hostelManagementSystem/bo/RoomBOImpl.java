@@ -7,7 +7,7 @@ import lk.ijse.hostelManagementSystem.entity.Room;
 import java.io.IOException;
 import java.util.List;
 
-public class RoomBOImpl implements RoomBo {
+public class RoomBOImpl implements RoomBO {
 
     private final RoomDAO roomDAO = new RoomDAOImpl();
 

@@ -15,6 +15,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
+import lk.ijse.hostelManagementSystem.bo.ReservationBO;
 import lk.ijse.hostelManagementSystem.bo.ReservationBOImpl;
 import lk.ijse.hostelManagementSystem.bo.StudentBOImpl;
 import lk.ijse.hostelManagementSystem.dao.custom.ReservationDAO;
@@ -187,7 +188,7 @@ public class AddReservationFormController implements Initializable {
     public void loadStudentId() {
         ObservableList<String> studentList = FXCollections.observableArrayList();
 
-        ReservationBOImpl reservationBO = new ReservationBOImpl();
+        ReservationBO reservationBO = new ReservationBOImpl();
         try {
             List<Student> list = reservationBO.getAllStudentId();
             for (Student student : list) {
@@ -203,7 +204,7 @@ public class AddReservationFormController implements Initializable {
     void selectStudentOnAction(ActionEvent event) {
         String id = cmbStudentId.getValue();
 
-        ReservationBOImpl reservationBO = new ReservationBOImpl();
+        ReservationBO reservationBO = new ReservationBOImpl();
         try {
             Student student = reservationBO.searchStudent(id);
             if (student != null) {
@@ -223,7 +224,7 @@ public class AddReservationFormController implements Initializable {
     public void loadRoomId() {
         ObservableList<String> roomList = FXCollections.observableArrayList();
 
-        ReservationBOImpl reservationBO = new ReservationBOImpl();
+        ReservationBO reservationBO = new ReservationBOImpl();
         try {
             List<Room> list = reservationBO.getAllRoomId();
             for (Room room : list) {
@@ -239,7 +240,7 @@ public class AddReservationFormController implements Initializable {
     void selectRoomOnAction(ActionEvent event) {
         String id = cmbRoomId.getValue();
 
-        ReservationBOImpl reservationBO = new ReservationBOImpl();
+        ReservationBO reservationBO = new ReservationBOImpl();
         try {
             Room room = reservationBO.searchRoom(id);
             if (room != null) {

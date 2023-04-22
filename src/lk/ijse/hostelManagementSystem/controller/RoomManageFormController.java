@@ -18,8 +18,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Duration;
 import lk.ijse.hostelManagementSystem.bo.RoomBOImpl;
-import lk.ijse.hostelManagementSystem.dao.custom.RoomDAO;
-import lk.ijse.hostelManagementSystem.dao.custom.impl.RoomDAOImpl;
+import lk.ijse.hostelManagementSystem.bo.RoomBO;
 import lk.ijse.hostelManagementSystem.entity.Room;
 
 import java.io.IOException;
@@ -103,7 +102,7 @@ public class RoomManageFormController implements Initializable {
 
         Room room = new Room(id, type, rent, roomQty, availabelQty, addDate);
 
-        RoomBOImpl roomBO = new RoomBOImpl();
+        RoomBO roomBO = new RoomBOImpl();
         try {
             boolean saveRoom = roomBO.saveRoom(room);
             if (saveRoom) {
@@ -121,7 +120,7 @@ public class RoomManageFormController implements Initializable {
     @FXML
     void searchOnAction(ActionEvent event) {
         String id = txtId.getText();
-        RoomBOImpl roomBO = new RoomBOImpl();
+        RoomBO roomBO = new RoomBOImpl();
         try {
             Room room = roomBO.searchRoom(id);
             if (room != null) {
@@ -150,7 +149,7 @@ public class RoomManageFormController implements Initializable {
 
         Room room = new Room(id, type, rent, roomQty, availabelQty, addDate);
 
-        RoomBOImpl roomBO = new RoomBOImpl();
+        RoomBO roomBO = new RoomBOImpl();
         try {
             boolean updateRoom = roomBO.updateRoom(room);
             if (updateRoom) {
@@ -167,7 +166,7 @@ public class RoomManageFormController implements Initializable {
     void deleteOnAction(ActionEvent event) {
         String id = txtId.getText();
 
-        RoomBOImpl roomBO = new RoomBOImpl();
+        RoomBO roomBO = new RoomBOImpl();
         try {
             boolean deleteRoom = roomBO.deleteRoom(id);
             if (deleteRoom) {
@@ -186,7 +185,7 @@ public class RoomManageFormController implements Initializable {
 
         roomList.clear();
 
-        RoomBOImpl roomBO = new RoomBOImpl();
+        RoomBO roomBO = new RoomBOImpl();
         try {
             List<Room> list = roomBO.getAllRoom();
             for (Room room : list) {

@@ -5,7 +5,7 @@ import lk.ijse.hostelManagementSystem.entity.Room;
 import java.io.IOException;
 import java.util.List;
 
-public interface RoomBo {
+public interface RoomBO {
     boolean saveRoom(Room dto) throws IOException;
 
     Room searchRoom(String id) throws IOException;
