@@ -8,7 +8,7 @@ import org.hibernate.Transaction;
 import java.io.IOException;
 import java.util.List;
 
-public class ReservationDAOImpl implements CrudDAO<Reserve> {
+public class ReservationDAOImpl implements ReservationDAO {
     @Override
     public boolean save(Reserve reserve) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();

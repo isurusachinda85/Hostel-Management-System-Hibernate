@@ -7,6 +7,6 @@ import org.hibernate.Transaction;
 
 import java.io.IOException;
 
-public interface ReservationDAO {
-    boolean saveReseve(Reserve reserve) throws IOException;
+public interface ReservationDAO extends CrudDAO<Reserve> {
+
 }

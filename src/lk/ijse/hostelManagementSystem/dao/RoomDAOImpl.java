@@ -10,7 +10,7 @@ import org.hibernate.query.Query;
 import java.io.IOException;
 import java.util.List;
 
-public class RoomDAOImpl implements CrudDAO<Room> {
+public class RoomDAOImpl implements RoomDAO {
     @Override
     public boolean save(Room room) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();

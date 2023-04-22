@@ -7,10 +7,6 @@ import org.hibernate.Transaction;
 
 import java.io.IOException;
 
-public interface UserDAO {
-    boolean saveUser(User user) throws IOException;
+public interface UserDAO extends CrudDAO<User>{
 
-    User searchUser(int id) throws IOException;
-
-    boolean updateUser(User user) throws IOException;
 }

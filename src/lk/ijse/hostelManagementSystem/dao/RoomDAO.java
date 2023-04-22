@@ -9,14 +9,6 @@ import org.hibernate.query.Query;
 import java.io.IOException;
 import java.util.List;
 
-public interface RoomDAO {
-    boolean saveRoom(Room room) throws IOException;
+public interface RoomDAO extends CrudDAO<Room>{
 
-    Room searchRoom(String id) throws IOException;
-
-    boolean updateRoom(Room room) throws IOException;
-
-    boolean deleteRoom(String id) throws IOException;
-
-    List<Room> getAllRoom() throws IOException;
 }

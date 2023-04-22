@@ -10,7 +10,7 @@ import java.io.IOException;
 
 import java.util.List;
 
-public class StudentDAOImpl implements CrudDAO<Student> {
+public class StudentDAOImpl implements StudentDAO {
     @Override
     public boolean save(Student student) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();

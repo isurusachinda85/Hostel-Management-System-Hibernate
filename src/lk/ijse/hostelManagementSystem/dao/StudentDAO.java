@@ -9,14 +9,6 @@ import org.hibernate.query.Query;
 import java.io.IOException;
 import java.util.List;
 
-public interface StudentDAO {
-    boolean saveStudent(Student student) throws IOException;
+public interface StudentDAO extends CrudDAO<Student>{
 
-    Student searchStudent(String id) throws IOException;
-
-    boolean updateStudent(Student student) throws IOException;
-
-    boolean deleteStudent(String id) throws IOException;
-
-    List<Student> getAllStudent() throws IOException;
 }
