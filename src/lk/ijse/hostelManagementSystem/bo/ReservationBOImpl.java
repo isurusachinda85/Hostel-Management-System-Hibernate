@@ -14,31 +14,37 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReservationBOImpl {
+public class ReservationBOImpl implements ReservationBO {
     private final ReservationDAO reservationDAO = new ReservationDAOImpl();
     private final StudentDAO studentDAO = new StudentDAOImpl();
     private final RoomDAO roomDAO = new RoomDAOImpl();
 
+    @Override
     public boolean saveReservation(Reserve dto) throws IOException {
         return true;
     }
 
+    @Override
     public boolean updateReservation(Reserve dto) {
         return false;
     }
 
+    @Override
     public boolean deleteReservation(String id) {
         return true;
     }
 
+    @Override
     public Student searchStudent(String id) throws IOException {
         return studentDAO.search(id);
     }
 
+    @Override
     public Room searchRoom(String id) throws IOException {
         return roomDAO.search(id);
     }
 
+    @Override
     public List<Student> getAllStudentId() throws IOException {
         /*List<Student>studentList = new ArrayList<>();
         List<Student> all = studentDAO.getAll();
@@ -48,6 +54,7 @@ public class ReservationBOImpl {
         return studentDAO.getAll();
     }
 
+    @Override
     public List<Room> getAllRoomId() throws IOException {
         /*List<Room>roomList = new ArrayList<>();
         List<Room> all = roomDAO.getAll();

@@ -6,16 +6,21 @@ import lk.ijse.hostelManagementSystem.entity.User;
 
 import java.io.IOException;
 
-public class UserBOImpl {
+public class UserBOImpl implements UserBO {
 
     private final UserDAO userDAO = new UserDAOImpl();
 
+    @Override
     public boolean saveUser(User dto) throws IOException {
         return userDAO.save(dto);
     }
+
+    @Override
     public User searchUser(String id) throws IOException {
         return userDAO.search(id);
     }
+
+    @Override
     public boolean updateUser(User dto) throws IOException {
         return userDAO.update(dto);
     }

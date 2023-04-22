@@ -7,27 +7,32 @@ import lk.ijse.hostelManagementSystem.entity.Room;
 import java.io.IOException;
 import java.util.List;
 
-public class RoomBOImpl {
+public class RoomBOImpl implements RoomBo {
 
     private final RoomDAO roomDAO = new RoomDAOImpl();
 
+    @Override
     public boolean saveRoom(Room dto) throws IOException {
         return roomDAO.save(dto);
     }
 
+    @Override
     public Room searchRoom(String id) throws IOException {
         return roomDAO.search(id);
     }
 
+    @Override
     public boolean updateRoom(Room dto) throws IOException {
         return roomDAO.update(dto);
     }
 
+    @Override
     public boolean deleteRoom(String id) throws IOException {
         return roomDAO.delete(id);
     }
 
+    @Override
     public List<Room> getAllRoom() throws IOException {
-         return roomDAO.getAll();
+        return roomDAO.getAll();
     }
 }
