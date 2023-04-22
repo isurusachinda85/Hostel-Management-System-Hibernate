@@ -1,5 +1,6 @@
 package lk.ijse.hostelManagementSystem.dao;
 
+import lk.ijse.hostelManagementSystem.dao.custom.UserDAO;
 import lk.ijse.hostelManagementSystem.entity.User;
 import lk.ijse.hostelManagementSystem.util.FactoryConfiguration;
 import org.hibernate.Session;

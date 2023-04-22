@@ -5,13 +5,9 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import lk.ijse.hostelManagementSystem.dao.CrudDAO;
-import lk.ijse.hostelManagementSystem.dao.UserDAO;
+import lk.ijse.hostelManagementSystem.dao.custom.UserDAO;
 import lk.ijse.hostelManagementSystem.dao.UserDAOImpl;
 import lk.ijse.hostelManagementSystem.entity.User;
-import lk.ijse.hostelManagementSystem.util.FactoryConfiguration;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 import java.io.IOException;
 

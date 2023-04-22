@@ -1,6 +1,6 @@
 package lk.ijse.hostelManagementSystem.dao;
 
-import javafx.scene.control.Alert;
+import lk.ijse.hostelManagementSystem.dao.custom.RoomDAO;
 import lk.ijse.hostelManagementSystem.entity.Room;
 import lk.ijse.hostelManagementSystem.util.FactoryConfiguration;
 import org.hibernate.Session;

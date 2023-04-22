@@ -12,14 +12,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import lk.ijse.hostelManagementSystem.dao.CrudDAO;
-import lk.ijse.hostelManagementSystem.dao.UserDAO;
+import lk.ijse.hostelManagementSystem.dao.custom.UserDAO;
 import lk.ijse.hostelManagementSystem.dao.UserDAOImpl;
 import lk.ijse.hostelManagementSystem.entity.User;
-import lk.ijse.hostelManagementSystem.util.FactoryConfiguration;
 import org.controlsfx.control.Notifications;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 
 import java.io.IOException;

@@ -17,15 +17,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Duration;
-import lk.ijse.hostelManagementSystem.dao.CrudDAO;
-import lk.ijse.hostelManagementSystem.dao.RoomDAO;
+import lk.ijse.hostelManagementSystem.dao.custom.RoomDAO;
 import lk.ijse.hostelManagementSystem.dao.RoomDAOImpl;
 import lk.ijse.hostelManagementSystem.entity.Room;
-import lk.ijse.hostelManagementSystem.util.FactoryConfiguration;
-import lombok.SneakyThrows;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
 import java.io.IOException;
 import java.net.URL;
