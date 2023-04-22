@@ -1,4 +1,4 @@
-package lk.ijse.hostelManagementSystem.bo;
+package lk.ijse.hostelManagementSystem.bo.custom;
 
 import lk.ijse.hostelManagementSystem.entity.Reserve;
 import lk.ijse.hostelManagementSystem.entity.Room;

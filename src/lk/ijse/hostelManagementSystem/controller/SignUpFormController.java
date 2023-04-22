@@ -12,10 +12,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import lk.ijse.hostelManagementSystem.bo.UserBO;
-import lk.ijse.hostelManagementSystem.bo.UserBOImpl;
-import lk.ijse.hostelManagementSystem.dao.custom.UserDAO;
-import lk.ijse.hostelManagementSystem.dao.custom.impl.UserDAOImpl;
+import lk.ijse.hostelManagementSystem.bo.custom.UserBO;
+import lk.ijse.hostelManagementSystem.bo.custom.impl.UserBOImpl;
 import lk.ijse.hostelManagementSystem.entity.User;
 import org.controlsfx.control.Notifications;
 

@@ -1,5 +1,6 @@
-package lk.ijse.hostelManagementSystem.bo;
+package lk.ijse.hostelManagementSystem.bo.custom.impl;
 
+import lk.ijse.hostelManagementSystem.bo.custom.ReservationBO;
 import lk.ijse.hostelManagementSystem.dao.custom.ReservationDAO;
 import lk.ijse.hostelManagementSystem.dao.custom.RoomDAO;
 import lk.ijse.hostelManagementSystem.dao.custom.StudentDAO;
@@ -11,7 +12,6 @@ import lk.ijse.hostelManagementSystem.entity.Room;
 import lk.ijse.hostelManagementSystem.entity.Student;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ReservationBOImpl implements ReservationBO {

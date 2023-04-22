@@ -5,10 +5,8 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import lk.ijse.hostelManagementSystem.bo.UserBO;
-import lk.ijse.hostelManagementSystem.bo.UserBOImpl;
-import lk.ijse.hostelManagementSystem.dao.custom.UserDAO;
-import lk.ijse.hostelManagementSystem.dao.custom.impl.UserDAOImpl;
+import lk.ijse.hostelManagementSystem.bo.custom.UserBO;
+import lk.ijse.hostelManagementSystem.bo.custom.impl.UserBOImpl;
 import lk.ijse.hostelManagementSystem.entity.User;
 
 import java.io.IOException;
