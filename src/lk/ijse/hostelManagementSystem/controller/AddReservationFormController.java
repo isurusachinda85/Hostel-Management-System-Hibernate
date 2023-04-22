@@ -116,9 +116,9 @@ public class AddReservationFormController implements Initializable {
     @FXML
     private Label lblTime;
 
-    private final CrudDAO reservationDAO = new ReservationDAOImpl();
-    private final CrudDAO studentDAO = new StudentDAOImpl();
-    private final CrudDAO roomDAO = new RoomDAOImpl();
+    private final ReservationDAO reservationDAO = new ReservationDAOImpl();
+    private final StudentDAO studentDAO = new StudentDAOImpl();
+    private final RoomDAO roomDAO = new RoomDAOImpl();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -205,7 +205,7 @@ public class AddReservationFormController implements Initializable {
         String id = cmbStudentId.getValue();
 
         try {
-            Student student = (Student) studentDAO.search(id);
+            Student student = studentDAO.search(id);
             if (student != null) {
                 name.setText(student.getName());
                 address.setText(student.getAddress());
@@ -239,7 +239,7 @@ public class AddReservationFormController implements Initializable {
         String id = cmbRoomId.getValue();
 
         try {
-            Room room = (Room) roomDAO.search(id);
+            Room room = roomDAO.search(id);
             if (room != null) {
                 type.setText(room.getType());
                 roomQty.setText(String.valueOf(room.getRoomsQty()));

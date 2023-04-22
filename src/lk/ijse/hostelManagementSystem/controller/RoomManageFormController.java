@@ -78,7 +78,7 @@ public class RoomManageFormController implements Initializable {
     @FXML
     private Label lblTime;
 
-    private final CrudDAO roomDAO = new RoomDAOImpl();
+    private final RoomDAO roomDAO = new RoomDAOImpl();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -127,7 +127,7 @@ public class RoomManageFormController implements Initializable {
         String id = txtId.getText();
 
         try {
-            Room room = (Room) roomDAO.search(id);
+            Room room = roomDAO.search(id);
             if (room != null) {
                 txtMonthlyRent.setText(String.valueOf(room.getMonthlyRent()));
                 cmbRoomType.setValue(room.getType());

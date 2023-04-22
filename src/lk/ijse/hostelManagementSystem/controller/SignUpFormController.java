@@ -35,7 +35,7 @@ public class SignUpFormController {
     @FXML
     private JFXPasswordField txtConfirmPassword;
 
-    private final CrudDAO userDAO = new UserDAOImpl();
+    private final UserDAO userDAO = new UserDAOImpl();
 
     public void registerOnAction(ActionEvent actionEvent) {
         String userName = txtUserName.getText();
