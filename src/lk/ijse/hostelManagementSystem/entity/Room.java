@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +21,7 @@ public class Room {
     private int roomsQty;
     private int availableQty;
     private LocalDate addDate;
-    @OneToMany(mappedBy = "room" ,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "room" ,fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private List<Reserve>reserveList = new ArrayList<>();
 
     public Room(String roomId, String type, double monthlyRent, int roomsQty, int availableQty, LocalDate addDate) {

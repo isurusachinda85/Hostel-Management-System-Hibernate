@@ -3,17 +3,21 @@ package lk.ijse.hostelManagementSystem.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 
-@AllArgsConstructor
+
 @NoArgsConstructor
 @Data
 @Entity
-public class Reserve {
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+public class Reserve{
     @Id
     private String reserveId;
     private LocalDate date;
@@ -27,4 +31,15 @@ public class Reserve {
     @ManyToOne
     private Student student;
 
+    public Reserve(String reserveId, LocalDate date, String studentName, double monthlyRent, double paidKeyMoney, double dueKeyMoney, String paymentThisMonth, Room room, Student student) {
+        this.reserveId = reserveId;
+        this.date = date;
+        this.studentName = studentName;
+        this.monthlyRent = monthlyRent;
+        this.paidKeyMoney = paidKeyMoney;
+        this.dueKeyMoney = dueKeyMoney;
+        this.paymentThisMonth = paymentThisMonth;
+        this.room = room;
+        this.student = student;
+    }
 }

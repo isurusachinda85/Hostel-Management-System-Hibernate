@@ -16,6 +16,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
+import lk.ijse.hostelManagementSystem.dao.ReservationDAOImpl;
+import lk.ijse.hostelManagementSystem.dao.RoomDAOImpl;
+import lk.ijse.hostelManagementSystem.dao.StudentDAOImpl;
 import lk.ijse.hostelManagementSystem.entity.Reserve;
 import lk.ijse.hostelManagementSystem.entity.Room;
 import lk.ijse.hostelManagementSystem.entity.Student;
@@ -115,7 +118,6 @@ public class AddReservationFormController implements Initializable {
     @FXML
     private Label lblTime;
 
-    @SneakyThrows
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadTimeAndDate();
@@ -126,18 +128,29 @@ public class AddReservationFormController implements Initializable {
 
     @FXML
     void reserveOnAction(ActionEvent event) {
+
         String roomId = cmbRoomId.getValue();
         String studentId = cmbStudentId.getValue();
+        String reserveId = roomId+"-"+studentId;
         String studentName = name.getText();
         double monthlyRent = Double.parseDouble(txtMonthlyRent.getText());
         double paidKeyMoney = Double.parseDouble(txtPaidKeyMoney.getText());
         double dueRent = Double.parseDouble(txtDueRent.getText());
         String paymentThisMonth = cmbPaymentThisMonth.getValue();
         LocalDate reserveDate = LocalDate.parse(lblDate.getText());
-        String reserveId = roomId+"-"+studentId;
 
 
-        //Reserve reserve = new Reserve(reserveId,reserveDate,studentName,monthlyRent,paidKeyMoney,dueRent,paymentThisMonth,roomId,studentId);
+
+        /*Reserve reserve = new Reserve(reserveId,reserveDate,studentName,monthlyRent,paidKeyMoney,dueRent,paymentThisMonth,roomId,studentId);
+        ReservationDAOImpl reservationDAO = new ReservationDAOImpl();
+        try {
+            boolean saveReseve = reservationDAO.saveReseve(reserve);
+            if (saveReseve) {
+                System.out.println("Save");
+            }
+        } catch (IOException e) {
+            System.out.println(e);
+        }*/
     }
 
     @FXML
@@ -171,75 +184,74 @@ public class AddReservationFormController implements Initializable {
 
     }
 
-    public void loadStudentId() throws IOException {
+    public void loadStudentId(){
         ObservableList<String> studentList = FXCollections.observableArrayList();
 
-        String hql = "FROM Student";
-
-        Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
-        Query query = session.createQuery(hql);
-        List<Student> list = query.list();
-        for (Student student : list) {
-            studentList.add(student.getSid());
-            cmbStudentId.setItems(studentList);
+        StudentDAOImpl studentDAO = new StudentDAOImpl();
+        try {
+            List<Student> list = studentDAO.getAllStudent();
+            for (Student student : list) {
+                studentList.add(student.getSid());
+                cmbStudentId.setItems(studentList);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        transaction.commit();
-        session.close();
     }
 
     @FXML
-    void selectStudentOnAction(ActionEvent event) throws IOException {
+    void selectStudentOnAction(ActionEvent event){
         String id = cmbStudentId.getValue();
 
-        Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
-        Student student = session.get(Student.class, id);
-        if (student != null) {
-            name.setText(student.getName());
-            address.setText(student.getAddress());
-            contact.setText(student.getContact());
-            gender.setText(student.getGender());
-            dob.setText(String.valueOf(student.getDob()));
-            registerDate.setText(String.valueOf(student.getRegisterDate()));
+        StudentDAOImpl studentDAO = new StudentDAOImpl();
+        try {
+            Student student = studentDAO.searchStudent(id);
+            if (student != null) {
+                name.setText(student.getName());
+                address.setText(student.getAddress());
+                contact.setText(student.getContact());
+                gender.setText(student.getGender());
+                dob.setText(String.valueOf(student.getDob()));
+                registerDate.setText(String.valueOf(student.getRegisterDate()));
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        transaction.commit();
-        session.close();
     }
 
-    public void loadRoomId() throws IOException {
+    public void loadRoomId(){
         ObservableList<String> roomList = FXCollections.observableArrayList();
 
-        String hql = "FROM Room";
-
-        Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
-        Query query = session.createQuery(hql);
-        List<Room> list = query.list();
-        for (Room room : list) {
-            roomList.add(room.getRoomId());
-            cmbRoomId.setItems(roomList);
+        RoomDAOImpl roomDAO = new RoomDAOImpl();
+        try {
+            List<Room> list = roomDAO.getAllRoom();
+            for (Room room : list) {
+                roomList.add(room.getRoomId());
+                cmbRoomId.setItems(roomList);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        transaction.commit();
-        session.close();
     }
 
     @FXML
-    void selectRoomOnAction(ActionEvent event) throws IOException {
+    void selectRoomOnAction(ActionEvent event){
         String id = cmbRoomId.getValue();
 
-        Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
-        Room room = session.get(Room.class, id);
-        if (room != null) {
-            type.setText(room.getType());
-            roomQty.setText(String.valueOf(room.getRoomsQty()));
-            availableQty.setText(String.valueOf(room.getAvailableQty()));
-            roomAddDate.setText(String.valueOf(room.getAddDate()));
-            txtMonthlyRent.setText(String.valueOf(room.getMonthlyRent()));
+        RoomDAOImpl roomDAO = new RoomDAOImpl();
+        try {
+            Room room = roomDAO.searchRoom(id);
+            if (room != null) {
+                type.setText(room.getType());
+                roomQty.setText(String.valueOf(room.getRoomsQty()));
+                availableQty.setText(String.valueOf(room.getAvailableQty()));
+                roomAddDate.setText(String.valueOf(room.getAddDate()));
+                txtMonthlyRent.setText(String.valueOf(room.getMonthlyRent()));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        transaction.commit();
-        session.close();
     }
 
     @FXML

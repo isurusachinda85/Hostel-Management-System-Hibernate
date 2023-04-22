@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +22,7 @@ public class Student {
     private LocalDate dob;
     private String gender;
     private LocalDate registerDate;
-    @OneToMany(mappedBy = "student",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "student",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private List<Reserve>reserveList = new ArrayList<>();
 
     public Student(String sid, String name, String address, String contact, LocalDate dob, String gender, LocalDate registerDate) {
