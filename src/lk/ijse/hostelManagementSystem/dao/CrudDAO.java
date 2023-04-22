@@ -1,7 +1,5 @@
 package lk.ijse.hostelManagementSystem.dao;
 
-import lk.ijse.hostelManagementSystem.entity.Student;
-
 import java.io.IOException;
 import java.util.List;
 
