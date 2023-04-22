@@ -74,9 +74,10 @@ public class RoomManageFormController implements Initializable {
     @FXML
     private Label lblDate;
 
-    private RoomDAO roomDAO = new RoomDAOImpl();
     @FXML
     private Label lblTime;
+
+    private final RoomDAO roomDAO = new RoomDAOImpl();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

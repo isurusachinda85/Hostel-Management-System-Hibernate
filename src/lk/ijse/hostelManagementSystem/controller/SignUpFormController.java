@@ -34,14 +34,14 @@ public class SignUpFormController {
     @FXML
     private JFXPasswordField txtConfirmPassword;
 
-    private UserDAO userDAO = new UserDAOImpl();
+    private final UserDAO userDAO = new UserDAOImpl();
 
-    public void registerOnAction(ActionEvent actionEvent){
+    public void registerOnAction(ActionEvent actionEvent) {
         String userName = txtUserName.getText();
         String password = txtPassword.getText();
         String confirmPassword = txtConfirmPassword.getText();
 
-        User user = new User(userName, password,confirmPassword);
+        User user = new User(userName, password, confirmPassword);
 
         try {
             boolean saveUser = userDAO.saveUser(user);
@@ -60,11 +60,13 @@ public class SignUpFormController {
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/lk/ijse/hostelManagementSystem/view/LoginForm.fxml"))));
         stage.centerOnScreen();
     }
-    public void clearText(){
+
+    public void clearText() {
         txtUserName.clear();
         txtPassword.clear();
         txtConfirmPassword.clear();
     }
+
     public void successNotification() {
         Notifications notificationBuilder = Notifications.create()
                 .title("Success !")
@@ -75,6 +77,7 @@ public class SignUpFormController {
         notificationBuilder.darkStyle();
         notificationBuilder.show();
     }
+
     public void failNotification() {
         Notifications notificationBuilder = Notifications.create()
                 .title("UnSuccessful !")

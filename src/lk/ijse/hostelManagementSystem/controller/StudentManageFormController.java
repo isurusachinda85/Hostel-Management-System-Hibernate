@@ -83,7 +83,7 @@ public class StudentManageFormController implements Initializable {
     @FXML
     private Label lblTime;
 
-    private StudentDAO studentDAO = new StudentDAOImpl();
+    private final StudentDAO studentDAO = new StudentDAOImpl();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

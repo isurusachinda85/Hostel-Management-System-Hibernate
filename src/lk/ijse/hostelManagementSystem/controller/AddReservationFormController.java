@@ -116,9 +116,9 @@ public class AddReservationFormController implements Initializable {
     @FXML
     private Label lblTime;
 
-    private ReservationDAO reservationDAO = new ReservationDAOImpl();
-    private StudentDAO studentDAO = new StudentDAOImpl();
-    private RoomDAO roomDAO = new RoomDAOImpl();
+    private final ReservationDAO reservationDAO = new ReservationDAOImpl();
+    private final StudentDAO studentDAO = new StudentDAOImpl();
+    private final RoomDAO roomDAO = new RoomDAOImpl();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -133,7 +133,7 @@ public class AddReservationFormController implements Initializable {
 
         String roomId = cmbRoomId.getValue();
         String studentId = cmbStudentId.getValue();
-        String reserveId = roomId+"-"+studentId;
+        String reserveId = roomId + "-" + studentId;
         String studentName = name.getText();
         double monthlyRent = Double.parseDouble(txtMonthlyRent.getText());
         double paidKeyMoney = Double.parseDouble(txtPaidKeyMoney.getText());
@@ -186,7 +186,7 @@ public class AddReservationFormController implements Initializable {
 
     }
 
-    public void loadStudentId(){
+    public void loadStudentId() {
         ObservableList<String> studentList = FXCollections.observableArrayList();
 
         try {
@@ -201,7 +201,7 @@ public class AddReservationFormController implements Initializable {
     }
 
     @FXML
-    void selectStudentOnAction(ActionEvent event){
+    void selectStudentOnAction(ActionEvent event) {
         String id = cmbStudentId.getValue();
 
         try {
@@ -220,7 +220,7 @@ public class AddReservationFormController implements Initializable {
         }
     }
 
-    public void loadRoomId(){
+    public void loadRoomId() {
         ObservableList<String> roomList = FXCollections.observableArrayList();
 
         try {
@@ -235,7 +235,7 @@ public class AddReservationFormController implements Initializable {
     }
 
     @FXML
-    void selectRoomOnAction(ActionEvent event){
+    void selectRoomOnAction(ActionEvent event) {
         String id = cmbRoomId.getValue();
 
         try {
