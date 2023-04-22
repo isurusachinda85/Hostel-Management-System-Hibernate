@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import lk.ijse.hostelManagementSystem.bo.UserBOImpl;
 import lk.ijse.hostelManagementSystem.dao.custom.UserDAO;
 import lk.ijse.hostelManagementSystem.dao.custom.impl.UserDAOImpl;
 import lk.ijse.hostelManagementSystem.entity.User;
@@ -31,7 +32,6 @@ public class SignUpFormController {
     @FXML
     private JFXPasswordField txtConfirmPassword;
 
-    private final UserDAO userDAO = new UserDAOImpl();
 
     public void registerOnAction(ActionEvent actionEvent) {
         String userName = txtUserName.getText();
@@ -40,8 +40,9 @@ public class SignUpFormController {
 
         User user = new User(userName, password, confirmPassword);
 
+        UserBOImpl userBO = new UserBOImpl();
         try {
-            boolean saveUser = userDAO.save(user);
+            boolean saveUser = userBO.saveUser(user);
             if (saveUser) {
                 successNotification();
             }
