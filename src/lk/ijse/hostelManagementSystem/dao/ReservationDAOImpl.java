@@ -7,7 +7,8 @@ import org.hibernate.Transaction;
 
 import java.io.IOException;
 
-public class ReservationDAOImpl {
+public class ReservationDAOImpl implements ReservationDAO {
+    @Override
     public boolean saveReseve(Reserve reserve) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
