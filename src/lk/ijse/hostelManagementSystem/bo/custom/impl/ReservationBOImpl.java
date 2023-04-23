@@ -132,8 +132,8 @@ public class ReservationBOImpl implements ReservationBO {
                     reserve.getPaidKeyMoney(),
                     reserve.getDueKeyMoney(),
                     reserve.getPaymentThisMonth(),
-                    reserve.getRoom(),
-                    reserve.getStudent()));
+                    reserve.getRoom().getRoomId(),
+                    reserve.getStudent().getSid()));
         }
         return reserveList;
     }

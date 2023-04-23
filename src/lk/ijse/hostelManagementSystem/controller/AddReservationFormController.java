@@ -163,6 +163,7 @@ public class AddReservationFormController implements Initializable {
             }else{
                 failNotification();
             }
+            getAllReserve();
         } catch (IOException e) {
             System.out.println(e);
         }

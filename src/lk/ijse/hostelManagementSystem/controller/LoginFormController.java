@@ -37,6 +37,8 @@ public class LoginFormController {
     @FXML
     private JFXToggleNode btnTogle;
 
+    private  static String userName;
+
     @FXML
     void passwordType(KeyEvent event) {
 
@@ -105,5 +107,10 @@ public class LoginFormController {
         notificationBuilder.darkStyle();
         notificationBuilder.show();
     }
-
+    public static String getUserName(){
+        return userName;
+    }
+    public static void setUserName(String userName){
+        LoginFormController.userName = userName;
+    }
 }

@@ -22,7 +22,6 @@ public class ReserveDTO {
     private String room;
     private String student;
 
-    public ReserveDTO(String reserveId, LocalDate date, String studentName, double monthlyRent, double paidKeyMoney, double dueKeyMoney, String paymentThisMonth, Room room, Student student) {
-    }
+
 
 }
